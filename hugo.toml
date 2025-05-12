@@ -1,4 +1,6 @@
 baseURL = "https://yashwanth164.github.io/blog.v3loz1ty/"
+canonifyURLs = "true"
+relativeURLs="true"
 languageCode = "en-us"
 title = "Velocity Blog"
 theme = "cactus"
@@ -8,7 +10,8 @@ copyright = "v3loz1ty"
     description = "This blog site focuses on application security, secure development, and client-side security. Explore best practices, insights on securing web applications, preventing client-side attacks, and building secure software solutions. In addition to these, you will find blogs related to genereal cybersecurity concepts."
     author = "Yashwanth Krishna"
     colortheme = "dark"
-    css = ["/css/custom.css"]
+    css = ["/blog.v3loz1ty/css/custom.css"]
+
 
 [[menu.main]]
 name = "Home"

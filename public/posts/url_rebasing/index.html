@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="/blog.v3loz1ty/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="../../lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="../../lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="../../lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="../../lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +39,7 @@ The base-uri directive defines URIs to be used in the element. The element itsel
   <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/styles.c05d68261bf086a9d7713c4f8a6215a3601608e267a816a7ee58f139b3d1aae51222aae2081c8e0c6bd35e1334773b7a16283022f31f92afd93bb37e5e822e66.css" integrity="sha512-wF1oJhvwhqnXcTxPimIVo2AWCOJnqBan7ljxObPRquUSIqriCByODGvTXhM0dzt6FigwIvMfkq/ZO7N&#43;XoIuZg=="> 
 
   
-   <link rel="stylesheet" href="https://yashwanth164.github.io/css/custom.css"> 
+   <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/custom.css"> 
   
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -64,11 +64,11 @@ The base-uri directive defines URIs to be used in the element. The element itsel
     <span id="nav">
       <ul>
          
-        <li><a href="/blog.v3loz1ty/">Home</a></li>
+        <li><a href="../../">Home</a></li>
          
-        <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+        <li><a href="../../posts">All posts</a></li>
          
-        <li><a href="/blog.v3loz1ty/about">About</a></li>
+        <li><a href="../../about">About</a></li>
         
       </ul>
     </span>
@@ -268,14 +268,14 @@ The base-uri directive defines URIs to be used in the element. The element itsel
 <blockquote>
 <p><strong>By injecting a <base> HTML element into the web document.</strong></p></blockquote>
 <p>To illustrate this, I created a simple vulnerable web application which does not perform any kind of screening on user input and have miserable CSP policy.</p>
-<img src="/img/IMG1_rebasing_url.png" alt="Alt text" class="rounded-image">
+<img src="../../img/IMG1_rebasing_url.png" alt="Alt text" class="rounded-image">
 <p>Lets check out the normal behavior of the application before <base> tag injection.</p>
-<img src="/img/IMG2_rebasing_url.png" alt="Alt text" class="rounded-image">
+<img src="../../img/IMG2_rebasing_url.png" alt="Alt text" class="rounded-image">
 <p>As you can see, this web application takes user input and reflects it back on the webpage and if you check the <strong>baseURI property</strong> of the document, it is set to <a href="http://localhost:3000/.">http://localhost:3000/.</a></p>
 <p>Now, lets do the injection of <base> tag.</p>
-<img src="/img/IMG3_rebasing_url.png" alt="Alt text" class="rounded-image">
+<img src="../../img/IMG3_rebasing_url.png" alt="Alt text" class="rounded-image">
 <p>After base tag injection, document’s baseURI property is changed to <a href="http://hacksitess.com">http://hacksitess.com</a> which is controlled by the end user and you can see once more <em>error in loading test.js file</em> because of re-basing.</p>
-<img src="/img/IMG4_rebasing_url.png" alt="Alt text" class="rounded-image">
+<img src="../../img/IMG4_rebasing_url.png" alt="Alt text" class="rounded-image">
 <p>This image shows the error in fetching the test.js file from hacksitess.com.</p>
 <p>If hacksitess.com hosts a malicious file named test.js, the browser will fetch and execute that script from the attacker&rsquo;s domain in the victim&rsquo;s browser.</p>
 <p>Happy hacking !</p>
@@ -297,11 +297,11 @@ The base-uri directive defines URIs to be used in the element. The element itsel
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/blog.v3loz1ty/">Home</a></li>
+          <li><a href="../../">Home</a></li>
          
-          <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+          <li><a href="../../posts">All posts</a></li>
          
-          <li><a href="/blog.v3loz1ty/about">About</a></li>
+          <li><a href="../../about">About</a></li>
         
       </ul>
     </div>
@@ -395,11 +395,11 @@ The base-uri directive defines URIs to be used in the element. The element itsel
     <nav>
       <ul>
          
-        <li><a href="/blog.v3loz1ty/">Home</a></li>
+        <li><a href="../../">Home</a></li>
          
-        <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+        <li><a href="../../posts">All posts</a></li>
          
-        <li><a href="/blog.v3loz1ty/about">About</a></li>
+        <li><a href="../../about">About</a></li>
         
       </ul>
     </nav>
@@ -410,11 +410,11 @@ The base-uri directive defines URIs to be used in the element. The element itsel
   </div>
 </body>
 
-<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
-<script src=/lib/jquery/jquery.min.js></script>
-<script src=/js/main.js></script>
+<link rel="stylesheet" href=../../lib/font-awesome/css/all.min.css>
+<script src=../../lib/jquery/jquery.min.js></script>
+<script src=../../js/main.js></script>
 
-<script src=/blog.v3loz1ty/js/code-copy.js></script>
+<script src=../../js/code-copy.js></script>
 
 
 
