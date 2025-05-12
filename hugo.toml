@@ -1,6 +1,6 @@
 baseURL = "https://yashwanth164.github.io/blog.v3loz1ty/"
 canonifyURLs = "true"
-relativeURLs="true"
+relativeURLs="false"
 languageCode = "en-us"
 title = "Velocity Blog"
 theme = "cactus"
