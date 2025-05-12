@@ -1,0 +1,52 @@
+baseURL = "https://yashwanth164.github.io/blog.v3loz1ty/"
+languageCode = "en-us"
+title = "Velocity Blog"
+theme = "cactus"
+copyright = "v3loz1ty"
+
+[params]
+    description = "This blog site focuses on application security, secure development, and client-side security. Explore best practices, insights on securing web applications, preventing client-side attacks, and building secure software solutions. In addition to these, you will find blogs related to genereal cybersecurity concepts."
+    author = "Yashwanth Krishna"
+    colortheme = "dark"
+    css = ["/css/custom.css"]
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "All posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 1
+    ordered = false
+    startLevel = 1
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = true
+    style = 'monokai'
+    tabWidth = 1
+    wrapperClass = 'highlight'
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+  

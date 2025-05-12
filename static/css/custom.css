@@ -1,0 +1,26 @@
+.rounded-image {
+  border-radius: 12px; /* Softer, uniform rounding */
+  border: 1px solid #339f79; /* Subtle, modern border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gentle shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  box-sizing: border-box; /* Maintains layout integrity */
+  max-width: 100%; /* Ensures responsiveness */
+  height: auto; /* Preserves aspect ratio */
+  cursor: pointer; /* Indicates clickability */
+}
+
+.rounded-image:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Optional: Dark theme adjustments (since your body has #0c0c0c background) */
+@media (prefers-color-scheme: dark) {
+  .rounded-image {
+    border: 1px solid #444; /* Darker border for dark mode */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Stronger shadow for contrast */
+  }
+  .rounded-image:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  }
+}
