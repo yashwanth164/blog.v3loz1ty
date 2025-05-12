@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog.v3loz1ty/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Risk Analysis | Velocity Blog</title>
+  <link rel = 'canonical' href = 'https://yashwanth164.github.io/blog.v3loz1ty/posts/riskanalysis/'>
+  <meta name="description" content="This blog site focuses on application security, secure development, and client-side security. Explore best practices, insights on securing web applications, preventing client-side attacks, and building secure software solutions. In addition to these, you will find blogs related to genereal cybersecurity concepts.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:url" content="https://yashwanth164.github.io/blog.v3loz1ty/posts/riskanalysis/">
+  <meta property="og:site_name" content="Velocity Blog">
+  <meta property="og:title" content="Risk Analysis">
+  <meta property="og:description" content="Risk Analysis Risk analysis is a part of the risk management process. It is a process of identifying the list of risks associated with each asset in the organization, and it involves the identification of threats, vulnerabilities, the likelihood of each threat being realized, and the impact of the realized threat.
+There are two ways to perform risk analysis.
+Qualitative
+Quantitative
+Qualitative Risk Analysis Qualitative risk analysis uses a ranking system where each risk is categorized as low, moderate, high, or critical based on the likelihood and impact/consequences of the risk.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-02-15T10:00:00+00:00">
+    <meta property="article:modified_time" content="2024-02-15T10:00:00+00:00">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Risk Analysis">
+  <meta name="twitter:description" content="Risk Analysis Risk analysis is a part of the risk management process. It is a process of identifying the list of risks associated with each asset in the organization, and it involves the identification of threats, vulnerabilities, the likelihood of each threat being realized, and the impact of the realized threat.
+There are two ways to perform risk analysis.
+Qualitative
+Quantitative
+Qualitative Risk Analysis Qualitative risk analysis uses a ranking system where each risk is categorized as low, moderate, high, or critical based on the likelihood and impact/consequences of the risk.">
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/styles.c05d68261bf086a9d7713c4f8a6215a3601608e267a816a7ee58f139b3d1aae51222aae2081c8e0c6bd35e1334773b7a16283022f31f92afd93bb37e5e822e66.css" integrity="sha512-wF1oJhvwhqnXcTxPimIVo2AWCOJnqBan7ljxObPRquUSIqriCByODGvTXhM0dzt6FigwIvMfkq/ZO7N&#43;XoIuZg=="> 
+
+  
+   <link rel="stylesheet" href="https://yashwanth164.github.io/css/custom.css"> 
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://yashwanth164.github.io/blog.v3loz1ty/images/favicon.ico" />
+
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li>
+          <a class="icon" href="https://yashwanth164.github.io/blog.v3loz1ty/posts/csrf_xss_chaining/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&text=Risk%20Analysis" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&title=Risk%20Analysis" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&is_video=false&description=Risk%20Analysis" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Risk%20Analysis&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&title=Risk%20Analysis" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&title=Risk%20Analysis" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&name=Risk%20Analysis&description=%3ch2%20id%3d%22risk-analysis%22%3eRisk%20Analysis%3c%2fh2%3e%0a%3cp%3eRisk%20analysis%20is%20a%20part%20of%20the%20risk%20management%20process.%20It%20is%20a%20process%20of%20identifying%20the%20list%20of%20risks%20associated%20with%20each%20asset%20in%20the%20organization%2c%20and%20it%20involves%20the%20identification%20of%20threats%2c%20vulnerabilities%2c%20the%20likelihood%20of%20each%20threat%20being%20realized%2c%20and%20the%20impact%20of%20the%20realized%20threat.%3c%2fp%3e%0a%3cp%3eThere%20are%20two%20ways%20to%20perform%20risk%20analysis.%3c%2fp%3e%0a%3col%3e%0a%3cli%3e%0a%3cp%3eQualitative%3c%2fp%3e%0a%3c%2fli%3e%0a%3cli%3e%0a%3cp%3eQuantitative%3c%2fp%3e%0a%3c%2fli%3e%0a%3c%2fol%3e%0a%3ch2%20id%3d%22qualitative-risk-analysis%22%3eQualitative%20Risk%20Analysis%3c%2fh2%3e%0a%3cp%3eQualitative%20risk%20analysis%20uses%20a%20ranking%20system%20where%20each%20risk%20is%20categorized%20as%20low%2c%20moderate%2c%20high%2c%20or%20critical%20based%20on%20the%20likelihood%20and%20impact%2fconsequences%20of%20the%20risk.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&t=Risk%20Analysis" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Risk Analysis
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2024-02-15 10:00:00 &#43;0000 UTC" itemprop="datePublished">2024-02-15</time>
+          
+        </div>
+        
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <h2 id="risk-analysis">Risk Analysis</h2>
+<p>Risk analysis is a part of the risk management process. It is a process of identifying the list of risks associated with each asset in the organization, and it involves the identification of threats, vulnerabilities, the likelihood of each threat being realized, and the impact of the realized threat.</p>
+<p>There are two ways to perform risk analysis.</p>
+<ol>
+<li>
+<p>Qualitative</p>
+</li>
+<li>
+<p>Quantitative</p>
+</li>
+</ol>
+<h2 id="qualitative-risk-analysis">Qualitative Risk Analysis</h2>
+<p>Qualitative risk analysis uses a ranking system where each risk is categorized as low, moderate, high, or critical based on the likelihood and impact/consequences of the risk.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2050/1*SHElcIpWKiamlN1JvKEDoA.png" alt="image source: https://www.safran.com/">image source: <a href="https://www.safran.com/">https://www.safran.com/</a></p>
+<h2 id="quantitative-risk-analysis">Quantitative Risk analysis</h2>
+<p>Quantitative risk analysis involves assigning a monetary value (asset value) to the asset and the data it contains. For instance, let’s say there is a laptop valued at $1000, and it holds critical PII information about employees of the organization, valued at $9000, making the total value of the asset $10000.</p>
+<p>Quantitative risk analysis involves following terms.</p>
+<p><strong>Exposure Factor (EF)</strong>: percentage of asset that is lost if the risk occurs.</p>
+<p><strong>Single Loss Expectancy (SLE)</strong>: amount of money loss faced by the organization if the risk is realized only once on a particular asset.</p>
+<blockquote>
+<p>SLE= Asset value * EF</p></blockquote>
+<p><strong>Annualized Rate of Occurrence (ARO)</strong>: The number of times a particular risk occurs within a single year for the asset.</p>
+<p><strong>Annualized Loss Expectancy (ALE)</strong>: The total amount of money loss faced by the organization if the risk is realized within a year for a particular asset.</p>
+<blockquote>
+<p>ALE=SLE*ARO</p></blockquote>
+<p>To understand these terms, let&rsquo;s take an example.</p>
+<p>10% of the server will get affected if the earthquake hits the organization twice in one year. Value of the server is $5000._</p>
+<pre><code>Exposure Factor (EF) - 10%
+Asset value - $5000
+Annualized Rate of Occurrence (ARO) = 2/year
+Single Loss Expectancy (SLE) = Asset value * EF ⇒  10 * 5000  ⇒  $500
+</code></pre>
+<p>This means the organization would face a loss of $500 if the risk is realized only once.</p>
+<pre><code>ALE = ARO * SLE ⇒ 2 * 500 ⇒ $1000
+</code></pre>
+<p>So, if the risk is realized twice in a year, the organization would face a total loss of $1000 on the server.</p>
+<p>Based on the organization’s understanding that countermeasures for mitigating the earthquake risk should not exceed $1000 per year, including both implementation and operational costs. This budget constraint suggests that the organization should seek cost-effective solutions for mitigating the earthquake risk on the server. Any countermeasures implemented should not only be effective in reducing the risk but also remain within the budget of $1000 per year.</p>
+<p>The organization may need to conduct a <em><strong>cost-benefit analysis</strong></em> to determine the most efficient and affordable countermeasures that can effectively mitigate the risk while staying within the specified budget constraint. This analysis will help prioritize and select the most suitable risk mitigation strategy.</p>
+<p>Thank you!!!</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog.v3loz1ty/">Home</a></li>
+         
+          <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+         
+          <li><a href="/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&text=Risk%20Analysis" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&title=Risk%20Analysis" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&is_video=false&description=Risk%20Analysis" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Risk%20Analysis&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&title=Risk%20Analysis" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&title=Risk%20Analysis" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&name=Risk%20Analysis&description=%3ch2%20id%3d%22risk-analysis%22%3eRisk%20Analysis%3c%2fh2%3e%0a%3cp%3eRisk%20analysis%20is%20a%20part%20of%20the%20risk%20management%20process.%20It%20is%20a%20process%20of%20identifying%20the%20list%20of%20risks%20associated%20with%20each%20asset%20in%20the%20organization%2c%20and%20it%20involves%20the%20identification%20of%20threats%2c%20vulnerabilities%2c%20the%20likelihood%20of%20each%20threat%20being%20realized%2c%20and%20the%20impact%20of%20the%20realized%20threat.%3c%2fp%3e%0a%3cp%3eThere%20are%20two%20ways%20to%20perform%20risk%20analysis.%3c%2fp%3e%0a%3col%3e%0a%3cli%3e%0a%3cp%3eQualitative%3c%2fp%3e%0a%3c%2fli%3e%0a%3cli%3e%0a%3cp%3eQuantitative%3c%2fp%3e%0a%3c%2fli%3e%0a%3c%2fol%3e%0a%3ch2%20id%3d%22qualitative-risk-analysis%22%3eQualitative%20Risk%20Analysis%3c%2fh2%3e%0a%3cp%3eQualitative%20risk%20analysis%20uses%20a%20ranking%20system%20where%20each%20risk%20is%20categorized%20as%20low%2c%20moderate%2c%20high%2c%20or%20critical%20based%20on%20the%20likelihood%20and%20impact%2fconsequences%20of%20the%20risk.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2friskanalysis%2f&t=Risk%20Analysis" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2025  v3loz1ty 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/blog.v3loz1ty/js/code-copy.js></script>
+
+
+
+
+</html>

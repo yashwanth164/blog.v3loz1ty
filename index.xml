@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Velocity Blog</title>
+    <link>https://yashwanth164.github.io/blog.v3loz1ty/</link>
+    <description>Recent content on Velocity Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v3loz1ty</copyright>
+    <lastBuildDate>Thu, 17 Apr 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/about/</link>
+      <pubDate>Sat, 10 May 2025 10:00:00 +0000</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/about/</guid>
+      <description>There are so many inspirations for starting this blog. Thanks to all of them!
+I am Yashwanth Krishna Kasiralla, and I am currently a master&amp;rsquo;s student at University College Dublin. I’m trying to improve my skills in application security and software development.</description>
+    </item>
+    
+    <item>
+      <title>Cross-Site WebSocket Hijacking (CSWSH)</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/</link>
+      <pubDate>Thu, 17 Apr 2025 10:00:00 +0000</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/</guid>
+      <description>Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.
+WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.
+This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers Upgrade: websocket, Sec-WebSocket-Versions, and Sec-WebScoket-Key.</description>
+    </item>
+    
+    <item>
+      <title>URL Rebasing with HTML Injection</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/</link>
+      <pubDate>Sat, 05 Apr 2025 10:00:00 +0000</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/</guid>
+      <description>Hey peeps, in this blog we will discuss about base-uri directive in CSP policy. As we all know, CSP policy is imposed by browser to accept resources from trusted sources and one such directive used in CSP policy is base-uri.
+The base-uri directive defines URIs to be used in the element. The element itself specifies the base URI for resolving all relative URIs within a web document. Any relative path in the document will be interpreted as relative to the base URI defined by the element.</description>
+    </item>
+    
+    <item>
+      <title>CSRF and XSS Chaining</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/csrf_xss_chaining/</link>
+      <pubDate>Thu, 27 Mar 2025 10:00:00 +0000</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/csrf_xss_chaining/</guid>
+      <description>In this blog, I will be discussing on crafting XSS payloads and chaining XSS with CSRF. Cross-site scripting (XSS) and Cross-site Request Forgery(CSRF) are old vulnerability which were part of OWASP top 10. Currently, XSS comes under A3: Injection whereas CSRF is no longer in OWASP top 10, 2021.
+There are different ways to defend the web application against XSS attacks implementing all of them gives defense in depth approach where the common goal is to secure web application against XSS attacks.</description>
+    </item>
+    
+    <item>
+      <title>Risk Analysis</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/riskanalysis/</link>
+      <pubDate>Thu, 15 Feb 2024 10:00:00 +0000</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/riskanalysis/</guid>
+      <description>Risk Analysis Risk analysis is a part of the risk management process. It is a process of identifying the list of risks associated with each asset in the organization, and it involves the identification of threats, vulnerabilities, the likelihood of each threat being realized, and the impact of the realized threat.
+There are two ways to perform risk analysis.
+Qualitative
+Quantitative
+Qualitative Risk Analysis Qualitative risk analysis uses a ranking system where each risk is categorized as low, moderate, high, or critical based on the likelihood and impact/consequences of the risk.</description>
+    </item>
+    
+  </channel>
+</rss>

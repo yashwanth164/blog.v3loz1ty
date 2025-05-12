@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog.v3loz1ty/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog.v3loz1ty/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Cross-Site WebSocket Hijacking (CSWSH) | Velocity Blog</title>
+  <link rel = 'canonical' href = 'https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/'>
+  <meta name="description" content="This blog site focuses on application security, secure development, and client-side security. Explore best practices, insights on securing web applications, preventing client-side attacks, and building secure software solutions. In addition to these, you will find blogs related to genereal cybersecurity concepts.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:url" content="https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/">
+  <meta property="og:site_name" content="Velocity Blog">
+  <meta property="og:title" content="Cross-Site WebSocket Hijacking (CSWSH)">
+  <meta property="og:description" content="Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.
+WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.
+This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers Upgrade: websocket, Sec-WebSocket-Versions, and Sec-WebScoket-Key. Server responds with status code 101 with Sec-WebSocket-Accept headers.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-17T10:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-17T10:00:00+00:00">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Cross-Site WebSocket Hijacking (CSWSH)">
+  <meta name="twitter:description" content="Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.
+WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.
+This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers Upgrade: websocket, Sec-WebSocket-Versions, and Sec-WebScoket-Key. Server responds with status code 101 with Sec-WebSocket-Accept headers.">
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/styles.c05d68261bf086a9d7713c4f8a6215a3601608e267a816a7ee58f139b3d1aae51222aae2081c8e0c6bd35e1334773b7a16283022f31f92afd93bb37e5e822e66.css" integrity="sha512-wF1oJhvwhqnXcTxPimIVo2AWCOJnqBan7ljxObPRquUSIqriCByODGvTXhM0dzt6FigwIvMfkq/ZO7N&#43;XoIuZg=="> 
+
+  
+   <link rel="stylesheet" href="https://yashwanth164.github.io/css/custom.css"> 
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://yashwanth164.github.io/blog.v3loz1ty/images/favicon.ico" />
+
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://yashwanth164.github.io/blog.v3loz1ty/about/" aria-label="Next">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&text=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&title=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&is_video=false&description=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&title=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&title=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&name=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29&description=%3cp%3eMany%20of%20you%20might%20have%20used%20WebSocket%20to%20implement%20a%20asynchronous%20communication%20between%20two%20systems%20over%20the%20internet.%20Lacking%20necessary%20validations%2fchecks%20in%20WebSocket%20implementation%20might%20lead%20to%20various%20vulnerabilities%20and%20one%20such%20vulnerability%20is%20CSWSH.%3c%2fp%3e%0a%3cp%3eWebSocket%20communication%20is%20established%20by%20initiating%20WebSocket%20handshake%20between%20the%20client%20and%20the%20WebSocket%20server%20as%20shown%20below.%3c%2fp%3e%0a%3cimg%20src%3d%22%2fimg%2fIMG1_cswsh.png%22%20alt%3d%22Alt%20text%22%20class%3d%22rounded-image%22%3e%20%0d%0a%3cp%3eThis%20HTTP%20request%20is%20called%20protocol%20upgrade%20request%20%28HTTP%20protocol%20to%20WS%20protocol%29%20and%20this%20request%20can%20be%20identified%20with%20following%20headers%20%3cstrong%3eUpgrade%3a%20websocket%3c%2fstrong%3e%2c%20%3cstrong%3eSec-WebSocket-Versions%3c%2fstrong%3e%2c%20and%20%3cstrong%3eSec-WebScoket-Key%3c%2fstrong%3e.%20Server%20responds%20with%20status%20code%20101%20with%20Sec-WebSocket-Accept%20headers.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&t=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents"></nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Cross-Site WebSocket Hijacking (CSWSH)
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2025-04-17 10:00:00 &#43;0000 UTC" itemprop="datePublished">2025-04-17</time>
+          
+        </div>
+        
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p>Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.</p>
+<p>WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.</p>
+<img src="/img/IMG1_cswsh.png" alt="Alt text" class="rounded-image"> 
+<p>This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers <strong>Upgrade: websocket</strong>, <strong>Sec-WebSocket-Versions</strong>, and <strong>Sec-WebScoket-Key</strong>. Server responds with status code 101 with Sec-WebSocket-Accept headers.</p>
+<p>Behind the scenes of this handshake, the following process takes place.</p>
+<ul>
+<li>Client send a base64 encoded nonce (Sec-WebScoket-Key)to the server.</li>
+<li>Server take this nonce send by client, concatenate with GUID(Globally Unique Identifier), compute hash (SHA-1) for the resulting string and then base64 encode the hash. This final base64 encoded string was send to client inSec-WebSocket-Acceptheader.</li>
+<li>Client recalculate this hash and compare it with hash value sent by server. if they both match WebSocket communication will establish.</li>
+</ul>
+<p>The CSWSH vulnerability arises due to a design limitation where the <strong>Same-Origin Policy (SOP) does not applicable to WebSocket communications</strong>. This means that a website from one origin can initiate a WebSocket connection with a server hosted on a different origin.</p>
+<p>Let’s understand this by taking an example. I have setup a web application with WebSocket server on a remote origin and below JavaScript code connects to the WebSocket server in that remote origin.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//JS in indextest.html 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ws</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#34;wss://4ce94c126ce328.lhr.life&#34;</span>); <span style="color:#75715e">//This is the remote origin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Connected to WebSocket server&#34;</span>);
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">messagesDiv</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;messages&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">messagesDiv</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">`&lt;p&gt;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&lt;/p&gt;`</span>;
+</span></span><span style="display:flex;"><span>    };
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I hosted the above script on an HTML page locally, and it successfully established a connection to the web server running on a remote origin (4ce94c126ce328.lhr.life) as shown below.</p>
+<img src="/img/IMG2_cswsh.png" alt="Alt text" class="rounded-image"> 
+<p>By now, you might be thinking this sounds a lot like another vulnerability and you’re correct. <em><strong>It’s similar to Cross-Site Request Forgery (CSRF)</strong></em>.</p>
+<p>Let’s repeat the above process by adding user authentication in the web application.</p>
+<img src="/img/IMG3_cswsh.png" alt="Alt text" class="rounded-image"> 
+<p>Authenticated with the web server, it issued a JWT token as a cookie with the attributes HttpOnly: true, Secure: true and SameSite: None as shown in the above image. As server-side verification, the WebSocket server verifies the JWT token during the handshake to ensure only authenticated users can establish a successful connection.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//JWT token verification in the websocket server
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decoded</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">verify</span>(<span style="color:#a6e22e">token</span>, <span style="color:#a6e22e">JWT_SECRET</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">`[</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">toISOString</span>()<span style="color:#e6db74">}</span><span style="color:#e6db74">] WebSocket: New authenticated client connected from </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">clientIp</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">`[</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">toISOString</span>()<span style="color:#e6db74">}</span><span style="color:#e6db74">] WebSocket: Unauthorized connection attempt from </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">clientIp</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">close</span>(<span style="color:#ae81ff">1008</span>, <span style="color:#e6db74">&#34;Authentication required&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This time I have hosted a separate domain (<a href="https://39d2c3f5b8554c.lhr.life">https://39d2c3f5b8554c.lhr.life</a>) with an HTML page (indextest.html) that establishes a connection to a WebSocket server running on a different origin. When a user, already authenticated to the WebSocket server on the other origin, receives and opens the URL (<a href="https://39d2c3f5b8554c.lhr.life/indextest.html)">https://39d2c3f5b8554c.lhr.life/indextest.html)</a>, the WebSocket connection is successfully established as shown below. *This occurs because the browser automatically includes the authentication cookies in the WebSocket handshake request, as configured with <strong>SameSite: None</strong>.</p>
+<img src="/img/IMG4_cswsh.png" alt="Alt text" class="rounded-image"> 
+<p>How to mitigate this vulnerability?</p>
+<ul>
+<li>Implement origin validation checks to reject WebSocket handshake requests from origins other than the server’s own.</li>
+<li>Set SameSitecookie attribute to Strict or Lax. (mitigate CSRF attacks)</li>
+</ul>
+<p>Hoping you gained some understanding about this vulnerability.</p>
+<p>Happy Hacking !</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog.v3loz1ty/">Home</a></li>
+         
+          <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+         
+          <li><a href="/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents"></nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&text=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&title=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&is_video=false&description=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&title=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&title=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&name=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29&description=%3cp%3eMany%20of%20you%20might%20have%20used%20WebSocket%20to%20implement%20a%20asynchronous%20communication%20between%20two%20systems%20over%20the%20internet.%20Lacking%20necessary%20validations%2fchecks%20in%20WebSocket%20implementation%20might%20lead%20to%20various%20vulnerabilities%20and%20one%20such%20vulnerability%20is%20CSWSH.%3c%2fp%3e%0a%3cp%3eWebSocket%20communication%20is%20established%20by%20initiating%20WebSocket%20handshake%20between%20the%20client%20and%20the%20WebSocket%20server%20as%20shown%20below.%3c%2fp%3e%0a%3cimg%20src%3d%22%2fimg%2fIMG1_cswsh.png%22%20alt%3d%22Alt%20text%22%20class%3d%22rounded-image%22%3e%20%0d%0a%3cp%3eThis%20HTTP%20request%20is%20called%20protocol%20upgrade%20request%20%28HTTP%20protocol%20to%20WS%20protocol%29%20and%20this%20request%20can%20be%20identified%20with%20following%20headers%20%3cstrong%3eUpgrade%3a%20websocket%3c%2fstrong%3e%2c%20%3cstrong%3eSec-WebSocket-Versions%3c%2fstrong%3e%2c%20and%20%3cstrong%3eSec-WebScoket-Key%3c%2fstrong%3e.%20Server%20responds%20with%20status%20code%20101%20with%20Sec-WebSocket-Accept%20headers.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fcswsh%2f&t=Cross-Site%20WebSocket%20Hijacking%20%28CSWSH%29" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2025  v3loz1ty 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/blog.v3loz1ty/js/code-copy.js></script>
+
+
+
+
+</html>
