@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>v3loz1ty</copyright>
-    <lastBuildDate>Sat, 10 May 2025 10:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 May 2025 15:03:55 +0100</lastBuildDate>
     <atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bypass CSP Using JSONP Endpoints</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</link>
+      <pubDate>Wed, 14 May 2025 15:03:55 +0100</pubDate>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</guid>
+      <description>&lt;p&gt;JSONP endpoints are a fascinating way to exchange information between two different origins. Let’s see how we can utilize JSONP endpoints to bypass a CSP policy. Before we get to that, let’s understand what is JSONP?&lt;/p&gt;&#xA;&lt;h2 id=&#34;understanding-jsonp&#34;&gt;Understanding JSONP&lt;/h2&gt;&#xA;&lt;p&gt;JSON with Padding (JSONP) is a technique used to bypass the same-origin policy in web browsers, which restricts scripts from making requests to a different origin than the one the web page is served from. JSONP leverages &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags, which are not subject to the same-origin policy, to fetch data from a different origin.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>About</title>
       <link>https://yashwanth164.github.io/blog.v3loz1ty/about/</link>
@@ -21,14 +28,14 @@
       <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/</link>
       <pubDate>Thu, 17 Apr 2025 10:00:00 +0000</pubDate>
       <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/</guid>
-      <description>&lt;p&gt;Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.&lt;/p&gt;&#xA;&lt;p&gt;WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.&lt;/p&gt;&#xA;&lt;img src=&#34;./img/IMG1_cswsh.png&#34; alt=&#34;Alt text&#34; class=&#34;rounded-image&#34;&gt; &#xD;&#xA;&lt;p&gt;This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers &lt;strong&gt;Upgrade: websocket&lt;/strong&gt;, &lt;strong&gt;Sec-WebSocket-Versions&lt;/strong&gt;, and &lt;strong&gt;Sec-WebScoket-Key&lt;/strong&gt;. Server responds with status code 101 with Sec-WebSocket-Accept headers.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.&lt;/p&gt;&#xA;&lt;p&gt;WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.&lt;/p&gt;&#xA;&lt;img src=&#34;https://yashwanth164.github.io/blog.v3loz1ty/img/IMG1_cswsh.png&#34; alt=&#34;Alt text&#34; class=&#34;rounded-image&#34;&gt; &#xD;&#xA;&lt;p&gt;This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers &lt;strong&gt;Upgrade: websocket&lt;/strong&gt;, &lt;strong&gt;Sec-WebSocket-Versions&lt;/strong&gt;, and &lt;strong&gt;Sec-WebScoket-Key&lt;/strong&gt;. Server responds with status code 101 with Sec-WebSocket-Accept headers.&lt;/p&gt;</description>
     </item>
     <item>
       <title>URL Rebasing with HTML Injection</title>
       <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/</link>
       <pubDate>Sat, 05 Apr 2025 10:00:00 +0000</pubDate>
       <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/</guid>
-      <description>&lt;p&gt;Hey peeps, in this blog we will discuss about base-uri directive in CSP policy. As we all know, CSP policy is imposed by browser to accept resources from trusted sources and one such directive used in CSP policy is base-uri.&lt;/p&gt;&#xA;&lt;p&gt;The base-uri directive defines URIs to be used in the &lt;base&gt; element. The &lt;base&gt; element itself specifies the base URI for resolving all relative URIs within a web document. Any relative path in the document will be interpreted as relative to the base URI defined by the &lt;base&gt; element.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Hey peeps, in this blog we will discuss about base-uri directive in CSP policy. As we all know, CSP policy is imposed by browser to accept resources from trusted sources and one such directive used in CSP policy is base-uri.&lt;/p&gt;&#xA;&lt;p&gt;The base-uri directive defines URIs to be used in the &lt;code&gt;&amp;lt;base&amp;gt;&lt;/code&gt; element. The &lt;code&gt;&amp;lt;base&amp;gt;&lt;/code&gt; element itself specifies the base URI for resolving all relative URIs within a web document. Any relative path in the document will be interpreted as relative to the base URI defined by the &lt;code&gt;&amp;lt;base&amp;gt;&lt;/code&gt; element.&lt;/p&gt;</description>
     </item>
     <item>
       <title>CSRF and XSS Chaining</title>

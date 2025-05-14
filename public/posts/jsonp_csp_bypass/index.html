@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Bypass CSP Using JSONP Endpoints | Velocity Blog</title>
+  <link rel = 'canonical' href = 'https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/'>
+  <meta name="description" content="This blog site focuses on application security, secure development, and client-side security. Explore best practices, insights on securing web applications, preventing client-side attacks, and building secure software solutions. In addition to these, you will find blogs related to genereal cybersecurity concepts.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:url" content="https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/">
+  <meta property="og:site_name" content="Velocity Blog">
+  <meta property="og:title" content="Bypass CSP Using JSONP Endpoints">
+  <meta property="og:description" content="JSONP endpoints are a fascinating way to exchange information between two different origins. Let’s see how we can utilize JSONP endpoints to bypass a CSP policy. Before we get to that, let’s understand what is JSONP?
+Understanding JSONP JSON with Padding (JSONP) is a technique used to bypass the same-origin policy in web browsers, which restricts scripts from making requests to a different origin than the one the web page is served from. JSONP leverages &lt;script&gt; tags, which are not subject to the same-origin policy, to fetch data from a different origin.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-14T15:03:55+01:00">
+    <meta property="article:modified_time" content="2025-05-14T15:03:55+01:00">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bypass CSP Using JSONP Endpoints">
+  <meta name="twitter:description" content="JSONP endpoints are a fascinating way to exchange information between two different origins. Let’s see how we can utilize JSONP endpoints to bypass a CSP policy. Before we get to that, let’s understand what is JSONP?
+Understanding JSONP JSON with Padding (JSONP) is a technique used to bypass the same-origin policy in web browsers, which restricts scripts from making requests to a different origin than the one the web page is served from. JSONP leverages &lt;script&gt; tags, which are not subject to the same-origin policy, to fetch data from a different origin.">
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/styles.c05d68261bf086a9d7713c4f8a6215a3601608e267a816a7ee58f139b3d1aae51222aae2081c8e0c6bd35e1334773b7a16283022f31f92afd93bb37e5e822e66.css" integrity="sha512-wF1oJhvwhqnXcTxPimIVo2AWCOJnqBan7ljxObPRquUSIqriCByODGvTXhM0dzt6FigwIvMfkq/ZO7N&#43;XoIuZg=="> 
+
+  
+   <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/custom.css"> 
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://yashwanth164.github.io/blog.v3loz1ty/images/favicon.ico" />
+
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://yashwanth164.github.io/blog.v3loz1ty/about/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&text=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&title=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&is_video=false&description=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Bypass%20CSP%20Using%20JSONP%20Endpoints&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&title=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&title=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&name=Bypass%20CSP%20Using%20JSONP%20Endpoints&description=%3cp%3eJSONP%20endpoints%20are%20a%20fascinating%20way%20to%20exchange%20information%20between%20two%20different%20origins.%20Let%e2%80%99s%20see%20how%20we%20can%20utilize%20JSONP%20endpoints%20to%20bypass%20a%20CSP%20policy.%20Before%20we%20get%20to%20that%2c%20let%e2%80%99s%20understand%20what%20is%20JSONP%3f%3c%2fp%3e%0a%3ch2%20id%3d%22understanding-jsonp%22%3eUnderstanding%20JSONP%3c%2fh2%3e%0a%3cp%3eJSON%20with%20Padding%20%28JSONP%29%20is%20a%20technique%20used%20to%20bypass%20the%20same-origin%20policy%20in%20web%20browsers%2c%20which%20restricts%20scripts%20from%20making%20requests%20to%20a%20different%20origin%20than%20the%20one%20the%20web%20page%20is%20served%20from.%20JSONP%20leverages%20%3ccode%3e%26lt%3bscript%26gt%3b%3c%2fcode%3e%20tags%2c%20which%20are%20not%20subject%20to%20the%20same-origin%20policy%2c%20to%20fetch%20data%20from%20a%20different%20origin.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&t=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Bypass CSP Using JSONP Endpoints
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2025-05-14 15:03:55 &#43;0100 BST" itemprop="datePublished">2025-05-14</time>
+          
+        </div>
+        
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p>JSONP endpoints are a fascinating way to exchange information between two different origins. Let’s see how we can utilize JSONP endpoints to bypass a CSP policy. Before we get to that, let’s understand what is JSONP?</p>
+<h2 id="understanding-jsonp">Understanding JSONP</h2>
+<p>JSON with Padding (JSONP) is a technique used to bypass the same-origin policy in web browsers, which restricts scripts from making requests to a different origin than the one the web page is served from. JSONP leverages <code>&lt;script&gt;</code> tags, which are not subject to the same-origin policy, to fetch data from a different origin.</p>
+<p>JSONP works by defining a callback function on the client side (e.g., claim), which is specified as a query parameter in the request to the JSONP endpoint. The server responds with a script that calls this callback function, passing the JSON data as an argument. Since the response is a script, it is directly executed in the client’s context, invoking the callback function with the received data</p>
+<p>let&rsquo;s look at an example for better understanding.  On client side, we define a JavaScript function, say claim, to process the data.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">claim</span>(<span style="color:#a6e22e">data</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Received data:&#34;</span>, <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Client make a request to a JSONP endpoint on a different origin (e.g., <a href="https://jsonpendpoint.com/revoke">https://jsonpendpoint.com/revoke</a>) through <code>&lt;script&gt;</code> tag. The request includes the name of the callback function as a query parameter as shown below.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://jsonpendpoint.com/revoke?callback=claim&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The server (jsonpendpoint.com) responds with a script that wraps the JSON data in the specified callback function. The response looks like this.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">claim</span>({ <span style="color:#e6db74">&#34;status&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;success&#34;</span>, <span style="color:#e6db74">&#34;data&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;token revoked&#34;</span> });
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Since this is loaded as a <code>&lt;script&gt;</code>, the browser executes it, invoking the claim function defined on your client side with the JSON data as an argument.</p>
+<p>All this is just like including script files from a different origin, and the browser executes them once it receives the full scripts. In the JSONP case, this script received is nothing but a function call with a JSON object as a parameter. If that function is defined on the client side, then it gets invoked automatically, which is <strong>claim</strong> in our example.</p>
+<h2 id="csp-bypass-with-jsonp">CSP Bypass with JSONP</h2>
+<p>Let&rsquo;s get to the main job of exploitation. I have set up a vulnerable web application that reflects user input on the webpage.</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/csp_bypass_jsonp1.png" width="600" height="600" alt="Alt text" class="rounded-image">
+<p>The web application follows the CSP policy specified below.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">setHeader</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Content-Security-Policy&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;default-src &#39;self&#39; https://*.google.com; 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     connect-src &#39;self&#39;; font-src &#39;none&#39;; frame-src &#39;none&#39;; img-src &#39;self&#39;; 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     manifest-src &#39;none&#39;; media-src &#39;none&#39;; object-src &#39;none&#39;; worker-src &#39;none&#39;; 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     frame-ancestors &#39;none&#39;; block-all-mixed-content;&#34;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This CSP policy is strong. It blocks the payload <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> and other image and iframe payloads.</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/csp_bypass_jsonp2.png" width="700" height="700" alt="Alt text" class="rounded-image">
+<p>However, by including default-src with &ldquo;https://*.google.com&rdquo; as the source, we can bypass this CSP policy to invoke an XSS attack. I found a Google JSONP endpoint to facilitate the attack. Check this <a href="https://github.com/zigoo0/JSONBee">github repo</a> for JSONP endpoints.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Payload to bypass CSP --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://accounts.google.com/o/oauth2/revoke?callback=alert(123)&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here, we are trying to invoke alert() and it was a success, as depicted in the image below.</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/csp_bypass_jsonp3.png" width="700" height="700" alt="Alt text" class="rounded-image">
+<p>If we look at the network tab, we can see calls to the accounts.google.com domain, which responded with alert(123)({json data}).</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/csp_bypass_jsonp4.png" width="700" height="700" alt="Alt text" class="rounded-image">
+<p>As soon as the client receives the response from the JSONP endpoint, it executes the received script, and thus we saw the alert pop-up.</p>
+<p>Thank you !</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&text=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&title=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&is_video=false&description=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Bypass%20CSP%20Using%20JSONP%20Endpoints&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&title=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&title=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&name=Bypass%20CSP%20Using%20JSONP%20Endpoints&description=%3cp%3eJSONP%20endpoints%20are%20a%20fascinating%20way%20to%20exchange%20information%20between%20two%20different%20origins.%20Let%e2%80%99s%20see%20how%20we%20can%20utilize%20JSONP%20endpoints%20to%20bypass%20a%20CSP%20policy.%20Before%20we%20get%20to%20that%2c%20let%e2%80%99s%20understand%20what%20is%20JSONP%3f%3c%2fp%3e%0a%3ch2%20id%3d%22understanding-jsonp%22%3eUnderstanding%20JSONP%3c%2fh2%3e%0a%3cp%3eJSON%20with%20Padding%20%28JSONP%29%20is%20a%20technique%20used%20to%20bypass%20the%20same-origin%20policy%20in%20web%20browsers%2c%20which%20restricts%20scripts%20from%20making%20requests%20to%20a%20different%20origin%20than%20the%20one%20the%20web%20page%20is%20served%20from.%20JSONP%20leverages%20%3ccode%3e%26lt%3bscript%26gt%3b%3c%2fcode%3e%20tags%2c%20which%20are%20not%20subject%20to%20the%20same-origin%20policy%2c%20to%20fetch%20data%20from%20a%20different%20origin.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fjsonp_csp_bypass%2f&t=Bypass%20CSP%20Using%20JSONP%20Endpoints" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2025  v3loz1ty 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/css/all.min.css>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/lib/jquery/jquery.min.js></script>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/js/main.js></script>
+
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/js/code-copy.js></script>
+
+
+
+
+</html>
