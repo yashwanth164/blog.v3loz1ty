@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-  <link rel="preload" href="../../lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="../../lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="../../lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="../../lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -66,11 +66,11 @@ This HTTP request is called protocol upgrade request (HTTP protocol to WS protoc
     <span id="nav">
       <ul>
          
-        <li><a href="../../">Home</a></li>
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
          
-        <li><a href="../../posts">All posts</a></li>
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
          
-        <li><a href="../../about">About</a></li>
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
         
       </ul>
     </span>
@@ -197,7 +197,7 @@ This HTTP request is called protocol upgrade request (HTTP protocol to WS protoc
     <div class="content" itemprop="articleBody">
       <p>Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.</p>
 <p>WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.</p>
-<img src="../../img/IMG1_cswsh.png" alt="Alt text" class="rounded-image"> 
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/IMG1_cswsh.png" alt="Alt text" class="rounded-image"> 
 <p>This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers <strong>Upgrade: websocket</strong>, <strong>Sec-WebSocket-Versions</strong>, and <strong>Sec-WebScoket-Key</strong>. Server responds with status code 101 with Sec-WebSocket-Accept headers.</p>
 <p>Behind the scenes of this handshake, the following process takes place.</p>
 <ul>
@@ -236,10 +236,10 @@ This HTTP request is called protocol upgrade request (HTTP protocol to WS protoc
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>I hosted the above script on an HTML page locally, and it successfully established a connection to the web server running on a remote origin (4ce94c126ce328.lhr.life) as shown below.</p>
-<img src="../../img/IMG2_cswsh.png" alt="Alt text" class="rounded-image"> 
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/IMG2_cswsh.png" alt="Alt text" class="rounded-image"> 
 <p>By now, you might be thinking this sounds a lot like another vulnerability and you’re correct. <em><strong>It’s similar to Cross-Site Request Forgery (CSRF)</strong></em>.</p>
 <p>Let’s repeat the above process by adding user authentication in the web application.</p>
-<img src="../../img/IMG3_cswsh.png" alt="Alt text" class="rounded-image"> 
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/IMG3_cswsh.png" alt="Alt text" class="rounded-image"> 
 <p>Authenticated with the web server, it issued a JWT token as a cookie with the attributes HttpOnly: true, Secure: true and SameSite: None as shown in the above image. As server-side verification, the WebSocket server verifies the JWT token during the handshake to ensure only authenticated users can establish a successful connection.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -272,7 +272,7 @@ This HTTP request is called protocol upgrade request (HTTP protocol to WS protoc
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>This time I have hosted a separate domain (<a href="https://39d2c3f5b8554c.lhr.life">https://39d2c3f5b8554c.lhr.life</a>) with an HTML page (indextest.html) that establishes a connection to a WebSocket server running on a different origin. When a user, already authenticated to the WebSocket server on the other origin, receives and opens the URL (<a href="https://39d2c3f5b8554c.lhr.life/indextest.html)">https://39d2c3f5b8554c.lhr.life/indextest.html)</a>, the WebSocket connection is successfully established as shown below. *This occurs because the browser automatically includes the authentication cookies in the WebSocket handshake request, as configured with <strong>SameSite: None</strong>.</p>
-<img src="../../img/IMG4_cswsh.png" alt="Alt text" class="rounded-image"> 
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/IMG4_cswsh.png" alt="Alt text" class="rounded-image"> 
 <p>How to mitigate this vulnerability?</p>
 <ul>
 <li>Implement origin validation checks to reject WebSocket handshake requests from origins other than the server’s own.</li>
@@ -298,11 +298,11 @@ This HTTP request is called protocol upgrade request (HTTP protocol to WS protoc
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="../../">Home</a></li>
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
          
-          <li><a href="../../posts">All posts</a></li>
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
          
-          <li><a href="../../about">About</a></li>
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
         
       </ul>
     </div>
@@ -396,11 +396,11 @@ This HTTP request is called protocol upgrade request (HTTP protocol to WS protoc
     <nav>
       <ul>
          
-        <li><a href="../../">Home</a></li>
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
          
-        <li><a href="../../posts">All posts</a></li>
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
          
-        <li><a href="../../about">About</a></li>
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
         
       </ul>
     </nav>
@@ -411,11 +411,11 @@ This HTTP request is called protocol upgrade request (HTTP protocol to WS protoc
   </div>
 </body>
 
-<link rel="stylesheet" href=../../lib/font-awesome/css/all.min.css>
-<script src=../../lib/jquery/jquery.min.js></script>
-<script src=../../js/main.js></script>
+<link rel="stylesheet" href=https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/css/all.min.css>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/lib/jquery/jquery.min.js></script>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/js/main.js></script>
 
-<script src=../../js/code-copy.js></script>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/js/code-copy.js></script>
 
 
 

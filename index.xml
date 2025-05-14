@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>v3loz1ty</copyright>
-    <lastBuildDate>Thu, 17 Apr 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 May 2025 15:03:55 +0100</lastBuildDate><atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bypass CSP Using JSONP Endpoints</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</link>
+      <pubDate>Wed, 14 May 2025 15:03:55 +0100</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</guid>
+      <description>JSONP endpoints are a fascinating way to exchange information between two different origins. Let’s see how we can utilize JSONP endpoints to bypass a CSP policy. Before we get to that, let’s understand what is JSONP?
+Understanding JSONP JSON with Padding (JSONP) is a technique used to bypass the same-origin policy in web browsers, which restricts scripts from making requests to a different origin than the one the web page is served from.</description>
+    </item>
+    
     <item>
       <title>About</title>
       <link>https://yashwanth164.github.io/blog.v3loz1ty/about/</link>
@@ -36,7 +46,7 @@ This HTTP request is called protocol upgrade request (HTTP protocol to WS protoc
       
       <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/</guid>
       <description>Hey peeps, in this blog we will discuss about base-uri directive in CSP policy. As we all know, CSP policy is imposed by browser to accept resources from trusted sources and one such directive used in CSP policy is base-uri.
-The base-uri directive defines URIs to be used in the element. The element itself specifies the base URI for resolving all relative URIs within a web document. Any relative path in the document will be interpreted as relative to the base URI defined by the element.</description>
+The base-uri directive defines URIs to be used in the &amp;lt;base&amp;gt; element. The &amp;lt;base&amp;gt; element itself specifies the base URI for resolving all relative URIs within a web document. Any relative path in the document will be interpreted as relative to the base URI defined by the &amp;lt;base&amp;gt; element.</description>
     </item>
     
     <item>
