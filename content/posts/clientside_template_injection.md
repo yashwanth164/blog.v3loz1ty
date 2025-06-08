@@ -1,6 +1,6 @@
 ---
 date: "2025-06-04T19:09:43+01:00"
-draft: true
+draft: false
 title: "Client Side Template Injection (CSTI)"
 tags: ["WebApp", "Web-Client"]
 ---

@@ -2,39 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Velocity Blog</title>
-    <link>http://localhost:1313/blog.v3loz1ty/tags/</link>
+    <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/</link>
     <description>Recent content in Tags on Velocity Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>v3loz1ty</copyright>
     <lastBuildDate>Wed, 04 Jun 2025 19:09:43 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog.v3loz1ty/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Web-Client</title>
-      <link>http://localhost:1313/blog.v3loz1ty/tags/web-client/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/web-client/</link>
       <pubDate>Wed, 04 Jun 2025 19:09:43 +0100</pubDate>
-      <guid>http://localhost:1313/blog.v3loz1ty/tags/web-client/</guid>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/tags/web-client/</guid>
       <description></description>
     </item>
     <item>
       <title>WebApp</title>
-      <link>http://localhost:1313/blog.v3loz1ty/tags/webapp/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/webapp/</link>
       <pubDate>Wed, 04 Jun 2025 19:09:43 +0100</pubDate>
-      <guid>http://localhost:1313/blog.v3loz1ty/tags/webapp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blog</title>
-      <link>http://localhost:1313/blog.v3loz1ty/tags/blog/</link>
-      <pubDate>Sat, 10 May 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog.v3loz1ty/tags/blog/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Welcome</title>
-      <link>http://localhost:1313/blog.v3loz1ty/tags/welcome/</link>
-      <pubDate>Sat, 10 May 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog.v3loz1ty/tags/welcome/</guid>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/tags/webapp/</guid>
       <description></description>
     </item>
   </channel>

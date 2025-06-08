@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>WebApp on Velocity Blog</title>
-    <link>http://localhost:1313/blog.v3loz1ty/tags/webapp/</link>
+    <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/webapp/</link>
     <description>Recent content in WebApp on Velocity Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>v3loz1ty</copyright>
     <lastBuildDate>Wed, 04 Jun 2025 19:09:43 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog.v3loz1ty/tags/webapp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/tags/webapp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Client Side Template Injection (CSTI)</title>
-      <link>http://localhost:1313/blog.v3loz1ty/posts/clientside_template_injection/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/clientside_template_injection/</link>
       <pubDate>Wed, 04 Jun 2025 19:09:43 +0100</pubDate>
-      <guid>http://localhost:1313/blog.v3loz1ty/posts/clientside_template_injection/</guid>
-      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Template injection is a critical web security vulnerability that occurs when user input is embedded into a template in an unsafe manner. This vulnerability allows attackers to inject malicious template code that can lead to remote code execution, data theft, or server compromise. In general Template injection can occur on client side or on server-side. This blog focuses on client-side template injection in angularJS framework which leads to XSS attacks.&lt;/p&gt;</description>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/clientside_template_injection/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Template injection is a critical web security vulnerability that occurs when user input is embedded into a template in an unsafe manner. This vulnerability allows attackers to inject malicious template code that can lead to remote code execution, data theft, or server compromise. Template injection can occur on both client-side and server-side. This blog focuses on client-side template injection in AngularJS framework which leads to XSS attacks.&lt;/p&gt;&#xA;&lt;p&gt;Developed by Google, AngularJS serves as a powerful frontend framework for building dynamic web applications. The framework&amp;rsquo;s template injection vulnerability has gained significant attention in the security community, particularly due to the groundbreaking sandbox escape techniques discovered by &lt;a href=&#34;https://x.com/garethheyes&#34;&gt;Gareth Heyes&lt;/a&gt; and Mario Heiderich from Cure53. For a deeper dive into their research on AngularJS sandbox escaping, refer to this comprehensive &lt;a href=&#34;https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angularjs&#34;&gt;PortSwigger blog&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
