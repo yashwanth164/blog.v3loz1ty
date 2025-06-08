@@ -2,32 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</loc>
+    <loc>http://localhost:1313/blog.v3loz1ty/posts/clientside_template_injection/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/posts/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/tags/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/tags/web-client/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/tags/webapp/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/posts/jsonp_csp_bypass/</loc>
     <lastmod>2025-05-14T15:03:55+01:00</lastmod>
   </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/</loc>
-    <lastmod>2025-05-14T15:03:55+01:00</lastmod>
-  </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/</loc>
-    <lastmod>2025-05-14T15:03:55+01:00</lastmod>
-  </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/about/</loc>
+    <loc>http://localhost:1313/blog.v3loz1ty/about/</loc>
     <lastmod>2025-05-10T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/</loc>
+    <loc>http://localhost:1313/blog.v3loz1ty/tags/blog/</loc>
+    <lastmod>2025-05-10T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/tags/welcome/</loc>
+    <lastmod>2025-05-10T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/posts/welcome/</loc>
+    <lastmod>2025-05-10T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog.v3loz1ty/posts/cswsh/</loc>
     <lastmod>2025-04-17T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/</loc>
+    <loc>http://localhost:1313/blog.v3loz1ty/posts/url_rebasing/</loc>
     <lastmod>2025-04-05T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/csrf_xss_chaining/</loc>
+    <loc>http://localhost:1313/blog.v3loz1ty/posts/csrf_xss_chaining/</loc>
     <lastmod>2025-03-27T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/riskanalysis/</loc>
+    <loc>http://localhost:1313/blog.v3loz1ty/posts/riskanalysis/</loc>
     <lastmod>2024-02-15T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/categories/</loc>
-  </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/tags/</loc>
+    <loc>http://localhost:1313/blog.v3loz1ty/categories/</loc>
   </url>
 </urlset>

@@ -2,53 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Velocity Blog</title>
-    <link>https://yashwanth164.github.io/blog.v3loz1ty/</link>
+    <link>http://localhost:1313/blog.v3loz1ty/</link>
     <description>Recent content on Velocity Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>v3loz1ty</copyright>
-    <lastBuildDate>Wed, 14 May 2025 15:03:55 +0100</lastBuildDate>
-    <atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Jun 2025 19:09:43 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog.v3loz1ty/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Client Side Template Injection (CSTI)</title>
+      <link>http://localhost:1313/blog.v3loz1ty/posts/clientside_template_injection/</link>
+      <pubDate>Wed, 04 Jun 2025 19:09:43 +0100</pubDate>
+      <guid>http://localhost:1313/blog.v3loz1ty/posts/clientside_template_injection/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Template injection is a critical web security vulnerability that occurs when user input is embedded into a template in an unsafe manner. This vulnerability allows attackers to inject malicious template code that can lead to remote code execution, data theft, or server compromise. In general Template injection can occur on client side or on server-side. This blog focuses on client-side template injection in angularJS framework which leads to XSS attacks.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Bypass CSP Using JSONP Endpoints</title>
-      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</link>
+      <link>http://localhost:1313/blog.v3loz1ty/posts/jsonp_csp_bypass/</link>
       <pubDate>Wed, 14 May 2025 15:03:55 +0100</pubDate>
-      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</guid>
+      <guid>http://localhost:1313/blog.v3loz1ty/posts/jsonp_csp_bypass/</guid>
       <description>&lt;p&gt;JSONP endpoints are a fascinating way to exchange information between two different origins. Let’s see how we can utilize JSONP endpoints to bypass a CSP policy. Before we get to that, let’s understand what is JSONP?&lt;/p&gt;&#xA;&lt;h2 id=&#34;understanding-jsonp&#34;&gt;Understanding JSONP&lt;/h2&gt;&#xA;&lt;p&gt;JSON with Padding (JSONP) is a technique used to bypass the same-origin policy in web browsers, which restricts scripts from making requests to a different origin than the one the web page is served from. JSONP leverages &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags, which are not subject to the same-origin policy, to fetch data from a different origin.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
-      <link>https://yashwanth164.github.io/blog.v3loz1ty/about/</link>
+      <link>http://localhost:1313/blog.v3loz1ty/about/</link>
       <pubDate>Sat, 10 May 2025 10:00:00 +0000</pubDate>
-      <guid>https://yashwanth164.github.io/blog.v3loz1ty/about/</guid>
+      <guid>http://localhost:1313/blog.v3loz1ty/about/</guid>
       <description>&lt;p&gt;There are so many inspirations for starting this blog. Thanks to all of them!&lt;/p&gt;&#xA;&lt;p&gt;I am Yashwanth Krishna Kasiralla, and I am currently a master&amp;rsquo;s student at University College Dublin. I’m focused on honing my skills in application security, software development and reverse engineering.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Welcome to My Blog</title>
+      <link>http://localhost:1313/blog.v3loz1ty/posts/welcome/</link>
+      <pubDate>Sat, 10 May 2025 10:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog.v3loz1ty/posts/welcome/</guid>
+      <description>&lt;p&gt;This is my first post using the Cactus theme!&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Cross-Site WebSocket Hijacking (CSWSH)</title>
-      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/</link>
+      <link>http://localhost:1313/blog.v3loz1ty/posts/cswsh/</link>
       <pubDate>Thu, 17 Apr 2025 10:00:00 +0000</pubDate>
-      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/cswsh/</guid>
-      <description>&lt;p&gt;Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.&lt;/p&gt;&#xA;&lt;p&gt;WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.&lt;/p&gt;&#xA;&lt;img src=&#34;https://yashwanth164.github.io/blog.v3loz1ty/img/IMG1_cswsh.png&#34; alt=&#34;Alt text&#34; class=&#34;rounded-image&#34;&gt; &#xD;&#xA;&lt;p&gt;This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers &lt;strong&gt;Upgrade: websocket&lt;/strong&gt;, &lt;strong&gt;Sec-WebSocket-Versions&lt;/strong&gt;, and &lt;strong&gt;Sec-WebScoket-Key&lt;/strong&gt;. Server responds with status code 101 with Sec-WebSocket-Accept headers.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/blog.v3loz1ty/posts/cswsh/</guid>
+      <description>&lt;p&gt;Many of you might have used WebSocket to implement a asynchronous communication between two systems over the internet. Lacking necessary validations/checks in WebSocket implementation might lead to various vulnerabilities and one such vulnerability is CSWSH.&lt;/p&gt;&#xA;&lt;p&gt;WebSocket communication is established by initiating WebSocket handshake between the client and the WebSocket server as shown below.&lt;/p&gt;&#xA;&lt;img src=&#34;http://localhost:1313/blog.v3loz1ty/img/IMG1_cswsh.png&#34; alt=&#34;Alt text&#34; class=&#34;rounded-image&#34;&gt; &#xD;&#xA;&lt;p&gt;This HTTP request is called protocol upgrade request (HTTP protocol to WS protocol) and this request can be identified with following headers &lt;strong&gt;Upgrade: websocket&lt;/strong&gt;, &lt;strong&gt;Sec-WebSocket-Versions&lt;/strong&gt;, and &lt;strong&gt;Sec-WebScoket-Key&lt;/strong&gt;. Server responds with status code 101 with Sec-WebSocket-Accept headers.&lt;/p&gt;</description>
     </item>
     <item>
       <title>URL Rebasing with HTML Injection</title>
-      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/</link>
+      <link>http://localhost:1313/blog.v3loz1ty/posts/url_rebasing/</link>
       <pubDate>Sat, 05 Apr 2025 10:00:00 +0000</pubDate>
-      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/url_rebasing/</guid>
+      <guid>http://localhost:1313/blog.v3loz1ty/posts/url_rebasing/</guid>
       <description>&lt;p&gt;Hey peeps, in this blog we will discuss about base-uri directive in CSP policy. As we all know, CSP policy is imposed by browser to accept resources from trusted sources and one such directive used in CSP policy is base-uri.&lt;/p&gt;&#xA;&lt;p&gt;The base-uri directive defines URIs to be used in the &lt;code&gt;&amp;lt;base&amp;gt;&lt;/code&gt; element. The &lt;code&gt;&amp;lt;base&amp;gt;&lt;/code&gt; element itself specifies the base URI for resolving all relative URIs within a web document. Any relative path in the document will be interpreted as relative to the base URI defined by the &lt;code&gt;&amp;lt;base&amp;gt;&lt;/code&gt; element.&lt;/p&gt;</description>
     </item>
     <item>
       <title>CSRF and XSS Chaining</title>
-      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/csrf_xss_chaining/</link>
+      <link>http://localhost:1313/blog.v3loz1ty/posts/csrf_xss_chaining/</link>
       <pubDate>Thu, 27 Mar 2025 10:00:00 +0000</pubDate>
-      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/csrf_xss_chaining/</guid>
+      <guid>http://localhost:1313/blog.v3loz1ty/posts/csrf_xss_chaining/</guid>
       <description>&lt;p&gt;In this blog, I will be discussing on crafting XSS payloads and chaining XSS with CSRF. Cross-site scripting (XSS) and Cross-site Request Forgery(CSRF) are old vulnerability which were part of OWASP top 10. Currently, XSS comes under A3: Injection whereas CSRF is no longer in OWASP top 10, 2021.&lt;/p&gt;&#xA;&lt;p&gt;There are different ways to defend the web application against XSS attacks implementing all of them gives defense in depth approach where the common goal is to secure web application against XSS attacks. One such approach is having proper Content Security Policy (CSP) header directives.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Risk Analysis</title>
-      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/riskanalysis/</link>
+      <link>http://localhost:1313/blog.v3loz1ty/posts/riskanalysis/</link>
       <pubDate>Thu, 15 Feb 2024 10:00:00 +0000</pubDate>
-      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/riskanalysis/</guid>
+      <guid>http://localhost:1313/blog.v3loz1ty/posts/riskanalysis/</guid>
       <description>&lt;h2 id=&#34;risk-analysis&#34;&gt;Risk Analysis&lt;/h2&gt;&#xA;&lt;p&gt;Risk analysis is a part of the risk management process. It is a process of identifying the list of risks associated with each asset in the organization, and it involves the identification of threats, vulnerabilities, the likelihood of each threat being realized, and the impact of the realized threat.&lt;/p&gt;&#xA;&lt;p&gt;There are two ways to perform risk analysis.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Qualitative&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Quantitative&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;qualitative-risk-analysis&#34;&gt;Qualitative Risk Analysis&lt;/h2&gt;&#xA;&lt;p&gt;Qualitative risk analysis uses a ranking system where each risk is categorized as low, moderate, high, or critical based on the likelihood and impact/consequences of the risk.&lt;/p&gt;</description>
     </item>
   </channel>
