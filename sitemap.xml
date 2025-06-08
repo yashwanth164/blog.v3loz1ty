@@ -2,13 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</loc>
-    <lastmod>2025-05-14T15:03:55+01:00</lastmod>
+    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/clientside_template_injection/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
   </url><url>
     <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/</loc>
-    <lastmod>2025-05-14T15:03:55+01:00</lastmod>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>https://yashwanth164.github.io/blog.v3loz1ty/tags/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
   </url><url>
     <loc>https://yashwanth164.github.io/blog.v3loz1ty/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>https://yashwanth164.github.io/blog.v3loz1ty/tags/web-client/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>https://yashwanth164.github.io/blog.v3loz1ty/tags/webapp/</loc>
+    <lastmod>2025-06-04T19:09:43+01:00</lastmod>
+  </url><url>
+    <loc>https://yashwanth164.github.io/blog.v3loz1ty/posts/jsonp_csp_bypass/</loc>
     <lastmod>2025-05-14T15:03:55+01:00</lastmod>
   </url><url>
     <loc>https://yashwanth164.github.io/blog.v3loz1ty/about/</loc>
@@ -27,7 +39,5 @@
     <lastmod>2024-02-15T10:00:00+00:00</lastmod>
   </url><url>
     <loc>https://yashwanth164.github.io/blog.v3loz1ty/categories/</loc>
-  </url><url>
-    <loc>https://yashwanth164.github.io/blog.v3loz1ty/tags/</loc>
   </url>
 </urlset>
