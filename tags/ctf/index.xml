@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CTF on Velocity Blog</title>
+    <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf/</link>
+    <description>Recent content in CTF on Velocity Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v3loz1ty</copyright>
+    <lastBuildDate>Mon, 18 Aug 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ScriptCTF Writeup</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/scriptctf_webchall_writeups/</link>
+      <pubDate>Mon, 18 Aug 2025 10:00:00 +0000</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/scriptctf_webchall_writeups/</guid>
+      <description>I recently particiapated in scriptCTF and I focused only on solving web challeges. There were two web challenges and I have solved both of them. let&amp;rsquo;s dive right in&amp;hellip;.
+Renderer Challenge Source code of the challenge were provided. Application allow user to upload images whitelisted with extensions (&amp;lsquo;jpg&amp;rsquo;,&amp;lsquo;jpeg&amp;rsquo;,&amp;lsquo;png&amp;rsquo;,&amp;lsquo;svg&amp;rsquo;). uploaded image will be render in a iframe when user send a request to /render route.
+When comes to solving this challenge, accessing /developer route will give us flag but this developer route is only accessible when developer_secret_cookie contents matches the contents in secret_cookie.</description>
+    </item>
+    
+  </channel>
+</rss>
