@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Velocity Blog</title>
-    <link>http://localhost:59962/blog.v3loz1ty/tags/</link>
+    <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/</link>
     <description>Recent content in Tags on Velocity Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>v3loz1ty</copyright>
     <lastBuildDate>Mon, 18 Aug 2025 10:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:59962/blog.v3loz1ty/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CTF</title>
-      <link>http://localhost:59962/blog.v3loz1ty/tags/ctf/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf/</link>
       <pubDate>Mon, 18 Aug 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:59962/blog.v3loz1ty/tags/ctf/</guid>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf/</guid>
       <description></description>
     </item>
     <item>
       <title>Imagemagick</title>
-      <link>http://localhost:59962/blog.v3loz1ty/tags/imagemagick/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/imagemagick/</link>
       <pubDate>Mon, 18 Aug 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:59962/blog.v3loz1ty/tags/imagemagick/</guid>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/tags/imagemagick/</guid>
       <description></description>
     </item>
     <item>
       <title>Pngcrunch</title>
-      <link>http://localhost:59962/blog.v3loz1ty/tags/pngcrunch/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/pngcrunch/</link>
       <pubDate>Mon, 18 Aug 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:59962/blog.v3loz1ty/tags/pngcrunch/</guid>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/tags/pngcrunch/</guid>
       <description></description>
     </item>
     <item>
       <title>Web</title>
-      <link>http://localhost:59962/blog.v3loz1ty/tags/web/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/web/</link>
       <pubDate>Mon, 18 Aug 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:59962/blog.v3loz1ty/tags/web/</guid>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/tags/web/</guid>
       <description></description>
     </item>
     <item>
       <title>Web-Client</title>
-      <link>http://localhost:59962/blog.v3loz1ty/tags/web-client/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/web-client/</link>
       <pubDate>Wed, 04 Jun 2025 19:09:43 +0100</pubDate>
-      <guid>http://localhost:59962/blog.v3loz1ty/tags/web-client/</guid>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/tags/web-client/</guid>
       <description></description>
     </item>
     <item>
       <title>WebApp</title>
-      <link>http://localhost:59962/blog.v3loz1ty/tags/webapp/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/webapp/</link>
       <pubDate>Wed, 04 Jun 2025 19:09:43 +0100</pubDate>
-      <guid>http://localhost:59962/blog.v3loz1ty/tags/webapp/</guid>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/tags/webapp/</guid>
       <description></description>
     </item>
   </channel>

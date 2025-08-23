@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "styles.css",
-	"sourceRoot": "c:/Users/YASHWANTH KRISHNA/Documents/velocityblog",
+	"sourceRoot": "C:/Users/YASHWANTH KRISHNA/Documents/velocityblog",
 	"sources": [
 		"themes/cactus/assets/scss/style.scss",
 		"themes/cactus/assets/scss/_variables.scss",

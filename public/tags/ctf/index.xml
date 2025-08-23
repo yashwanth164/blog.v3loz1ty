@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CTF on Velocity Blog</title>
-    <link>http://localhost:59962/blog.v3loz1ty/tags/ctf/</link>
+    <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf/</link>
     <description>Recent content in CTF on Velocity Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>v3loz1ty</copyright>
     <lastBuildDate>Mon, 18 Aug 2025 10:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:59962/blog.v3loz1ty/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ScriptCTF Writeup</title>
-      <link>http://localhost:59962/blog.v3loz1ty/posts/ctf/scriptctf_webchall_writeups/</link>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/scriptctf_webchall_writeups/</link>
       <pubDate>Mon, 18 Aug 2025 10:00:00 +0000</pubDate>
-      <guid>http://localhost:59962/blog.v3loz1ty/posts/ctf/scriptctf_webchall_writeups/</guid>
-      <description>&lt;p&gt;I recently particiapated in scriptCTF and I focused only on solving web challeges. There were two web challenges and I have solved both of them. let&amp;rsquo;s dive right in&amp;hellip;.&lt;/p&gt;&#xA;&lt;h1 id=&#34;renderer-challenge&#34;&gt;Renderer Challenge&lt;/h1&gt;&#xA;&lt;p&gt;Source code of the challenge were provided. Application allow user to upload images whitelisted with extensions (&amp;lsquo;jpg&amp;rsquo;,&amp;lsquo;jpeg&amp;rsquo;,&amp;lsquo;png&amp;rsquo;,&amp;lsquo;svg&amp;rsquo;). uploaded image will be render in a iframe when user send a request to &lt;code&gt;/render&lt;/code&gt; route.&lt;/p&gt;&#xA;&lt;img src=&#34;http://localhost:59962/blog.v3loz1ty/img/scriptctf_1.png&#34; width=&#34;700&#34; height=&#34;700&#34; alt=&#34;image 1&#34; class=&#34;rounded-image&#34;&gt;&#xD;&#xA;&lt;p&gt;When comes to solving this challenge, accessing &lt;code&gt;/developer&lt;/code&gt; route will give us flag but this developer route is only accessible when &lt;code&gt;developer_secret_cookie&lt;/code&gt; contents matches the contents in &lt;code&gt;secret_cookie.txt&lt;/code&gt; file.&lt;/p&gt;</description>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/scriptctf_webchall_writeups/</guid>
+      <description>&lt;p&gt;I recently particiapated in scriptCTF and I focused only on solving web challeges. There were two web challenges and I have solved both of them. let&amp;rsquo;s dive right in&amp;hellip;.&lt;/p&gt;&#xA;&lt;h1 id=&#34;renderer-challenge&#34;&gt;Renderer Challenge&lt;/h1&gt;&#xA;&lt;p&gt;Source code of the challenge were provided. Application allow user to upload images whitelisted with extensions (&amp;lsquo;jpg&amp;rsquo;,&amp;lsquo;jpeg&amp;rsquo;,&amp;lsquo;png&amp;rsquo;,&amp;lsquo;svg&amp;rsquo;). uploaded image will be render in a iframe when user send a request to &lt;code&gt;/render&lt;/code&gt; route.&lt;/p&gt;&#xA;&lt;img src=&#34;https://yashwanth164.github.io/blog.v3loz1ty/img/scriptctf_1.png&#34; width=&#34;700&#34; height=&#34;700&#34; alt=&#34;image 1&#34; class=&#34;rounded-image&#34;&gt;&#xD;&#xA;&lt;p&gt;When comes to solving this challenge, accessing &lt;code&gt;/developer&lt;/code&gt; route will give us flag but this developer route is only accessible when &lt;code&gt;developer_secret_cookie&lt;/code&gt; contents matches the contents in &lt;code&gt;secret_cookie.txt&lt;/code&gt; file.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
