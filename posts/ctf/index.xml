@@ -9,6 +9,17 @@
     <copyright>v3loz1ty</copyright>
     <lastBuildDate>Mon, 18 Aug 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>TFC CTF Writeup</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/tfc_webchall_writeup/</link>
+      <pubDate>Mon, 08 Sep 2025 10:00:00 +0000</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/tfc_webchall_writeup/</guid>
+      <description>Out of 7 challenges, I have tried out 2 challenges and was able to solve only one challenge. Challenges are bit tricky compated to other CTFs i have played so far.
+Challenge: Web-slippy This challenge allows user to upload zip files. After cheking the index.js file i found that i need to access /debug/files.
+Here in line 68, user can pass query parameter (session_id) in the url and contents of query parameter will be appended to .</description>
+    </item>
+    
+    <item>
       <title>ScriptCTF Writeup</title>
       <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/scriptctf_webchall_writeups/</link>
       <pubDate>Mon, 18 Aug 2025 10:00:00 +0000</pubDate>
