@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bcrypt on Velocity Blog</title>
+    <link>https://yashwanth164.github.io/blog.v3loz1ty/tags/bcrypt/</link>
+    <description>Recent content in Bcrypt on Velocity Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v3loz1ty</copyright>
+    <lastBuildDate>Sat, 20 Sep 2025 10:00:00 +0000</lastBuildDate><atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/tags/bcrypt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Imaginary CTF Writeup</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/imaginaryctf_webchall_writeups/</link>
+      <pubDate>Sat, 20 Sep 2025 10:00:00 +0000</pubDate>
+      
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/imaginaryctf_webchall_writeups/</guid>
+      <description>Total of 7 challenges and I solved three challenges spending 8 hours. Challenges are very good.
+Passwordless Challenge Challenge summary This challenge is a Node.js/Express web application using an in-memory SQLite database and bcrypt for password hashing. The app implements a &amp;ldquo;passwordless&amp;rdquo; style registration where a temporary password is generated at signup but is not actually delivered to the user. Sessions are managed via express-session and several protections are in place (rate limiting, email normalization, and password hashing).</description>
+    </item>
+    
+  </channel>
+</rss>
