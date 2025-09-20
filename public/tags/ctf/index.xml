@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>v3loz1ty</copyright>
-    <lastBuildDate>Mon, 08 Sep 2025 10:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Sep 2025 10:00:00 +0000</lastBuildDate>
     <atom:link href="https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Imaginary CTF Writeup</title>
+      <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/imaginaryctf_webchall_writeups/</link>
+      <pubDate>Sat, 20 Sep 2025 10:00:00 +0000</pubDate>
+      <guid>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/imaginaryctf_webchall_writeups/</guid>
+      <description>&lt;p&gt;Total of 7 challenges and I solved three challenges spending 8 hours. Challenges are very good.&lt;/p&gt;&#xA;&lt;h1 id=&#34;passwordless-challenge&#34;&gt;Passwordless Challenge&lt;/h1&gt;&#xA;&lt;img src=&#34;https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_1.png&#34; width=&#34;700&#34; height=&#34;700&#34; alt=&#34;image 1&#34; class=&#34;rounded-image&#34;&gt;&#xD;&#xA;&lt;h2 id=&#34;challenge-summary&#34;&gt;Challenge summary&lt;/h2&gt;&#xA;&lt;p&gt;This challenge is a Node.js/Express web application using an in-memory SQLite database and bcrypt for password hashing. The app implements a &amp;ldquo;passwordless&amp;rdquo; style registration where a temporary password is generated at signup but is not actually delivered to the user. Sessions are managed via express-session and several protections are in place (rate limiting, email normalization, and password hashing).&lt;/p&gt;</description>
+    </item>
     <item>
       <title>TFC CTF Writeup</title>
       <link>https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/tfc_webchall_writeup/</link>

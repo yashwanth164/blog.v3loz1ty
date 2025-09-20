@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://yashwanth164.github.io/blog.v3loz1ty/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Imaginary CTF Writeup | Velocity Blog</title>
+  <link rel = 'canonical' href = 'https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/imaginaryctf_webchall_writeups/'>
+  <meta name="description" content="This blog site focuses on application security, secure development, and client-side security. Explore best practices, insights on securing web applications, preventing client-side attacks, and building secure software solutions. In addition to these, you will find blogs related to genereal cybersecurity concepts.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:url" content="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/imaginaryctf_webchall_writeups/">
+  <meta property="og:site_name" content="Velocity Blog">
+  <meta property="og:title" content="Imaginary CTF Writeup">
+  <meta property="og:description" content="Total of 7 challenges and I solved three challenges spending 8 hours. Challenges are very good.
+Passwordless Challenge Challenge summary This challenge is a Node.js/Express web application using an in-memory SQLite database and bcrypt for password hashing. The app implements a “passwordless” style registration where a temporary password is generated at signup but is not actually delivered to the user. Sessions are managed via express-session and several protections are in place (rate limiting, email normalization, and password hashing).">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-20T10:00:00+00:00">
+    <meta property="article:modified_time" content="2025-09-20T10:00:00+00:00">
+    <meta property="article:tag" content="Bcrypt">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="LFI">
+    <meta property="article:tag" content="CTF">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Imaginary CTF Writeup">
+  <meta name="twitter:description" content="Total of 7 challenges and I solved three challenges spending 8 hours. Challenges are very good.
+Passwordless Challenge Challenge summary This challenge is a Node.js/Express web application using an in-memory SQLite database and bcrypt for password hashing. The app implements a “passwordless” style registration where a temporary password is generated at signup but is not actually delivered to the user. Sessions are managed via express-session and several protections are in place (rate limiting, email normalization, and password hashing).">
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/styles.c05d68261bf086a9d7713c4f8a6215a3601608e267a816a7ee58f139b3d1aae51222aae2081c8e0c6bd35e1334773b7a16283022f31f92afd93bb37e5e822e66.css" integrity="sha512-wF1oJhvwhqnXcTxPimIVo2AWCOJnqBan7ljxObPRquUSIqriCByODGvTXhM0dzt6FigwIvMfkq/ZO7N&#43;XoIuZg=="> 
+
+  
+   <link rel="stylesheet" href="https://yashwanth164.github.io/blog.v3loz1ty/css/custom.css"> 
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://yashwanth164.github.io/blog.v3loz1ty/images/favicon.ico" />
+
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf">CTF writeups</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf/tfc_webchall_writeup/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&text=Imaginary%20CTF%20Writeup" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&title=Imaginary%20CTF%20Writeup" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&is_video=false&description=Imaginary%20CTF%20Writeup" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Imaginary%20CTF%20Writeup&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&title=Imaginary%20CTF%20Writeup" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&title=Imaginary%20CTF%20Writeup" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&name=Imaginary%20CTF%20Writeup&description=%3cp%3eTotal%20of%207%20challenges%20and%20I%20solved%20three%20challenges%20spending%208%20hours.%20Challenges%20are%20very%20good.%3c%2fp%3e%0a%3ch1%20id%3d%22passwordless-challenge%22%3ePasswordless%20Challenge%3c%2fh1%3e%0a%3cimg%20src%3d%22%2fimg%2fimaginaryctf_1.png%22%20width%3d%22700%22%20height%3d%22700%22%20alt%3d%22image%201%22%20class%3d%22rounded-image%22%3e%0d%0a%3ch2%20id%3d%22challenge-summary%22%3eChallenge%20summary%3c%2fh2%3e%0a%3cp%3eThis%20challenge%20is%20a%20Node.js%2fExpress%20web%20application%20using%20an%20in-memory%20SQLite%20database%20and%20bcrypt%20for%20password%20hashing.%20The%20app%20implements%20a%20%26ldquo%3bpasswordless%26rdquo%3b%20style%20registration%20where%20a%20temporary%20password%20is%20generated%20at%20signup%20but%20is%20not%20actually%20delivered%20to%20the%20user.%20Sessions%20are%20managed%20via%20express-session%20and%20several%20protections%20are%20in%20place%20%28rate%20limiting%2c%20email%20normalization%2c%20and%20password%20hashing%29.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&t=Imaginary%20CTF%20Writeup" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#passwordless-challenge">Passwordless Challenge</a></li>
+    <li><a href="#codenames-1-challenge">Codenames-1 Challenge</a></li>
+    <li><a href="#imaginary-notes-challenge">Imaginary-notes Challenge</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Imaginary CTF Writeup
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2025-09-20 10:00:00 &#43;0000 UTC" itemprop="datePublished">2025-09-20</time>
+          
+        </div>
+        
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="https://yashwanth164.github.io/blog.v3loz1ty/tags/bcrypt" rel="tag">Bcrypt</a>
+            
+             ,  
+            <a class="tag-link" href="https://yashwanth164.github.io/blog.v3loz1ty/tags/web" rel="tag">web</a>
+            
+             ,  
+            <a class="tag-link" href="https://yashwanth164.github.io/blog.v3loz1ty/tags/lfi" rel="tag">LFI</a>
+            
+             ,  
+            <a class="tag-link" href="https://yashwanth164.github.io/blog.v3loz1ty/tags/ctf" rel="tag">CTF</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p>Total of 7 challenges and I solved three challenges spending 8 hours. Challenges are very good.</p>
+<h1 id="passwordless-challenge">Passwordless Challenge</h1>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_1.png" width="700" height="700" alt="image 1" class="rounded-image">
+<h2 id="challenge-summary">Challenge summary</h2>
+<p>This challenge is a Node.js/Express web application using an in-memory SQLite database and bcrypt for password hashing. The app implements a &ldquo;passwordless&rdquo; style registration where a temporary password is generated at signup but is not actually delivered to the user. Sessions are managed via express-session and several protections are in place (rate limiting, email normalization, and password hashing).</p>
+<h2 id="application-analysis">Application analysis</h2>
+<ul>
+<li>Stack: Node.js, Express, SQLite (in-memory), bcrypt, express-session, crypto for randomness.</li>
+<li>Registration:
+<ul>
+<li>User submits an email.</li>
+<li>The server normalizes the email and checks its length (max 64 chars).</li>
+<li>A temporary password is generated by concatenating the (un-normalized) supplied email with random bytes, then the result is bcrypt-hashed and stored.</li>
+<li>Email delivery of the temporary password is not implemented.</li>
+</ul>
+</li>
+<li>Authentication:
+<ul>
+<li>User submits email + password.</li>
+<li>The email is normalized and compared, <code>bcrypt.compareSync(password, user.password)</code> is used against the stored hash.</li>
+<li>On success the session is regenerated and the user object is stored on the session.</li>
+</ul>
+</li>
+<li>Sessions:
+<ul>
+<li>Managed with express-session and a randomly generated secret.</li>
+<li>Dashboard route checks the session to restrict access.</li>
+<li>Logout destroys the session.</li>
+</ul>
+</li>
+<li>Rate limiting:
+<ul>
+<li>POST requests to /user and /session are limited to 10 requests per minute per IP.</li>
+</ul>
+</li>
+<li><code>normalizeEmail('johnotander+foobar@gmail.com')</code> =&gt; <code>'johnotander@gmail.com'</code></li>
+<li>plus-tagging is removed and the local-part is canonicalized; domain is lowercased. Use the normalized form consistently for validation, storage, and lookups.</li>
+</ul>
+<h2 id="key-observations">Key Observations</h2>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_2.png" width="700" height="700" alt="image 1" class="rounded-image">
+<ul>
+<li>The email from the request body is first normalized</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nEmail</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">normalizeEmail</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">email</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>A length check is performed on the normalized email (nEmail)</li>
+<li>The  password is generated using the original (non-normalized) email combined with random bytes.</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialPassword</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">email</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">randomBytes</span>(<span style="color:#ae81ff">16</span>).<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>The initialPassword is then hashed with bcrypt.</li>
+</ul>
+<p>**Here, bcrypt has a flaw in most of it&rsquo;s implemenatations, bcrypt.hash() take input of upto 72 bytes and everying after that is truncated. **</p>
+<h2 id="solution">solution</h2>
+<ul>
+<li>I used this email for registration
+<code> ctfuser+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@gmail.com </code>
+After normalization, email becomes <a href="mailto:ctfuser@gmail.com">ctfuser@gmail.com</a> and it will pass length check.</li>
+<li>make a curl POST request to /user endpoint</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:1;-o-tab-size:1;tab-size:1;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST http: //passwordless.chal.imaginaryctf.org/user -d <span style="color:#e6db74">&#34;email=ctfuser%2Baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@gmail.com&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Now, our password is the 1st 72 chars of the email which will be <code>ctfuser+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code></li>
+<li>By logging into the application got the flag <code>ictf{8ee2ebc4085927c0dc85f07303354a05}</code></li>
+</ul>
+<h1 id="codenames-1-challenge">Codenames-1 Challenge</h1>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_3.png" width="700" height="700" alt="image 1" class="rounded-image">
+<p>This challenge has two flags, one flag at <code>/flag.txt</code> and The second flag is set as an environment variable (FLAG_2).</p>
+<h2 id="codenames-1-backend-analysis-rephrased">Codenames-1 backend analysis (rephrased)</h2>
+<ul>
+<li>The backend is a Flask app using Flask-SocketIO for real-time gameplay. User profiles are stored as JSON files, and wordlists live in a words folder (one .txt per supported language, e.g., words/en.txt).</li>
+<li>Key components:
+<ul>
+<li>Imports &amp; setup: Flask, SocketIO, Werkzeug password utilities, and filesystem prep for profiles/wordlists.</li>
+<li>Profiles: load_profile/save_profile manage per-user JSON files (username, hashed password, wins, bot flag).</li>
+<li>Routes: /register, /login, /logout, /lobby, /create_game, /join_game, /game/&lt;code&gt;, /add_bot — create_game selects a language and loads the corresponding words file.</li>
+<li>SocketIO: join, give_clue, make_guess handle real-time game flow, team assignment, bot logic, and flag reveal conditions in hard mode.</li>
+<li>Main: app runs via SocketIO for live interactions.</li>
+</ul>
+</li>
+</ul>
+<h2 id="security-observation-wordlist-loading-and-language-parameter">Security observation: wordlist loading and language parameter</h2>
+<ul>
+<li>The app chooses a wordlist file based on a user-supplied language value (e.g., language=en -&gt; words/en.txt). The code attempts to block traversal by rejecting values containing a dot, but this check is insufficient.</li>
+<li>Reason: rejecting &ldquo;.&rdquo; blocks simple relative traversal tokens like &ldquo;../&rdquo;, but an attacker can submit an absolute path (which may not contain a dot) to bypass the filter and point the app at arbitrary files.
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_4.png" width="700" height="700" alt="image 1" class="rounded-image"></li>
+</ul>
+<h2 id="solution-1">solution</h2>
+<ul>
+<li>Pass <code>/flag</code> value in the language parameter.</li>
+<li>you will get the flag in game grids as shown below.</li>
+</ul>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_5.png" width="700" height="700" alt="image 1" class="rounded-image">
+<h1 id="imaginary-notes-challenge">Imaginary-notes Challenge</h1>
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_6.png" width="700" height="700" alt="image 1" class="rounded-image">
+<p>Accessed the application from the browser.
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_7.png" width="700" height="700" alt="image 1" class="rounded-image">
+It was observed that a request to Supabase API was made directly from the browser as shown below.
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_8.png" width="700" height="700" alt="image 1" class="rounded-image">
+Modified this request to get the password of the admin (password of admin is the flag.)
+<img src="https://yashwanth164.github.io/blog.v3loz1ty/img/imaginaryctf_9.png" width="700" height="700" alt="image 1" class="rounded-image"></p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf">CTF writeups</a></li>
+         
+          <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#passwordless-challenge">Passwordless Challenge</a></li>
+    <li><a href="#codenames-1-challenge">Codenames-1 Challenge</a></li>
+    <li><a href="#imaginary-notes-challenge">Imaginary-notes Challenge</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&text=Imaginary%20CTF%20Writeup" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&title=Imaginary%20CTF%20Writeup" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&is_video=false&description=Imaginary%20CTF%20Writeup" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Imaginary%20CTF%20Writeup&body=Check out this article: https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&title=Imaginary%20CTF%20Writeup" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&title=Imaginary%20CTF%20Writeup" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&name=Imaginary%20CTF%20Writeup&description=%3cp%3eTotal%20of%207%20challenges%20and%20I%20solved%20three%20challenges%20spending%208%20hours.%20Challenges%20are%20very%20good.%3c%2fp%3e%0a%3ch1%20id%3d%22passwordless-challenge%22%3ePasswordless%20Challenge%3c%2fh1%3e%0a%3cimg%20src%3d%22%2fimg%2fimaginaryctf_1.png%22%20width%3d%22700%22%20height%3d%22700%22%20alt%3d%22image%201%22%20class%3d%22rounded-image%22%3e%0d%0a%3ch2%20id%3d%22challenge-summary%22%3eChallenge%20summary%3c%2fh2%3e%0a%3cp%3eThis%20challenge%20is%20a%20Node.js%2fExpress%20web%20application%20using%20an%20in-memory%20SQLite%20database%20and%20bcrypt%20for%20password%20hashing.%20The%20app%20implements%20a%20%26ldquo%3bpasswordless%26rdquo%3b%20style%20registration%20where%20a%20temporary%20password%20is%20generated%20at%20signup%20but%20is%20not%20actually%20delivered%20to%20the%20user.%20Sessions%20are%20managed%20via%20express-session%20and%20several%20protections%20are%20in%20place%20%28rate%20limiting%2c%20email%20normalization%2c%20and%20password%20hashing%29.%3c%2fp%3e" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fyashwanth164.github.io%2fblog.v3loz1ty%2fposts%2fctf%2fimaginaryctf_webchall_writeups%2f&t=Imaginary%20CTF%20Writeup" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2025  v3loz1ty 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/">Home</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts">All posts</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/posts/ctf">CTF writeups</a></li>
+         
+        <li><a href="https://yashwanth164.github.io/blog.v3loz1ty/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=https://yashwanth164.github.io/blog.v3loz1ty/lib/font-awesome/css/all.min.css>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/lib/jquery/jquery.min.js></script>
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/js/main.js></script>
+
+<script src=https://yashwanth164.github.io/blog.v3loz1ty/js/code-copy.js></script>
+
+
+
+
+</html>
